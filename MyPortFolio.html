@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shubham Mahindrakar - AI-Driven Bioinformatics Researcher</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+<body>
+    <!-- Loading Screen with Space Animation -->
+    <div id="loading-screen">
+        <div class="space-container">
+            <div class="stars-field" id="stars-field"></div>
+            <div class="planets">
+                <div class="planet planet-1"></div>
+                <div class="planet planet-2"></div>
+                <div class="planet planet-3"></div>
+            </div>
+            <div class="loading-dna">
+                <div class="dna-strand strand-1"></div>
+                <div class="dna-strand strand-2"></div>
+                <div class="loading-text">
+                    <span class="loading-letter">L</span>
+                    <span class="loading-letter">O</span>
+                    <span class="loading-letter">A</span>
+                    <span class="loading-letter">D</span>
+                    <span class="loading-letter">I</span>
+                    <span class="loading-letter">N</span>
+                    <span class="loading-letter">G</span>
+                </div>
+            </div>
+            <div class="loading-progress">
+                <div class="progress-bar"></div>
+                <div class="progress-text">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation with Theme Toggle -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo-container">
+                <div class="logo">
+                    <span class="logo-text">SM</span>
+                    <div class="logo-glow"></div>
+                </div>
+                <div class="logo-tooltip">Shubham Mahindrakar</div>
+            </div>
+            
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link" data-text="Home">
+                        <i class="fas fa-home nav-icon"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link" data-text="About">
+                        <i class="fas fa-user nav-icon"></i>
+                        <span>About</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#experience" class="nav-link" data-text="Experience">
+                        <i class="fas fa-briefcase nav-icon"></i>
+                        <span>Experience</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#projects" class="nav-link" data-text="Projects">
+                        <i class="fas fa-project-diagram nav-icon"></i>
+                        <span>Projects</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#skills" class="nav-link" data-text="Skills">
+                        <i class="fas fa-code nav-icon"></i>
+                        <span>Skills</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link" data-text="Contact">
+                        <i class="fas fa-envelope nav-icon"></i>
+                        <span>Contact</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="nav-controls">
+                <div class="theme-toggle" id="theme-toggle">
+                    <div class="toggle-track">
+                        <div class="toggle-thumb">
+                            <i class="fas fa-sun sun-icon"></i>
+                            <i class="fas fa-moon moon-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Advanced Space Animation -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="space-scene">
+                <div class="stars-layer stars-near"></div>
+                <div class="stars-layer stars-mid"></div>
+                <div class="stars-layer stars-far"></div>
+                <div class="nebula nebula-1"></div>
+                <div class="nebula nebula-2"></div>
+                <div class="meteor-shower"></div>
+                <canvas id="constellation-canvas"></canvas>
+            </div>
+            <div class="gradient-overlay"></div>
+        </div>
+
+        <div class="hero-content" data-aos="fade-up">
+            <div class="hero-text">
+                <div class="greeting" data-aos="fade-right" data-aos-delay="200">
+                    <span class="wave">👋</span> Hello, I'm
+                </div>
+                
+                <h1 class="hero-title" data-aos="fade-right" data-aos-delay="400">
+                    <div class="title-line">
+                        <span class="typing-text" id="typing-text"></span>
+                        <span class="cursor">|</span>
+                    </div>
+                    <div class="title-subtitle">Bioinformatics Researcher</div>
+                </h1>
+
+                <div class="hero-badges" data-aos="fade-right" data-aos-delay="600">
+                    <span class="badge">🧬 AI in Biology</span>
+                    <span class="badge">💻 Tool Developer</span>
+                    <span class="badge">🔬 Researcher</span>
+                </div>
+
+                <p class="hero-description" data-aos="fade-right" data-aos-delay="800">
+                    Combining <span class="highlight">Artificial Intelligence</span> with 
+                    <span class="highlight">Biological Intelligence</span> to decode the language of life. 
+                    Passionate about genomics, precision medicine, and developing cutting-edge bioinformatics tools 
+                    that bridge the gap between technology and biology.
+                </p>
+
+                <div class="hero-stats" data-aos="fade-right" data-aos-delay="1000">
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="8.06">8.06</div>
+                        <div class="stat-label">CGPA</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="10">6</div>
+                        <div class="stat-label">Projects</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="3">2</div>
+                        <div class="stat-label">Awards</div>
+                    </div>
+                </div>
+
+                <div class="hero-buttons" data-aos="fade-right" data-aos-delay="1200">
+                    <a href="#projects" class="btn btn-primary btn-glow">
+                        <span class="btn-text">View My Work</span>
+                        <div class="btn-particles"></div>
+                        <i class="fas fa-rocket btn-icon"></i>
+                    </a>
+                    <a href="https://github.com/ShubhamBioIT/Shubham-Mahindrakar-FlowCV-Resume-20251004.pdf" 
+                       target="_blank" class="btn btn-secondary btn-magnetic">
+                        <span class="btn-text">Download Resume</span>
+                        <i class="fas fa-download btn-icon"></i>
+                        <div class="btn-ripple"></div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-visual" data-aos="fade-left" data-aos-delay="600">
+                <div class="profile-container">
+                    <div class="profile-glow-outer"></div>
+                    <div class="profile-glow-inner"></div>
+                    <div class="profile-frame">
+                        <div class="profile-image">
+                            <div class="profile-initials">SM</div>
+                            <div class="profile-status">
+                                <div class="status-dot"></div>
+                                <span>Available for opportunities</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="orbital-rings">
+                        <div class="ring ring-1">
+                            <div class="ring-particle particle-dna">🧬</div>
+                        </div>
+                        <div class="ring ring-2">
+                            <div class="ring-particle particle-code">💻</div>
+                            <div class="ring-particle particle-science">🔬</div>
+                        </div>
+                        <div class="ring ring-3">
+                            <div class="ring-particle particle-ai">🤖</div>
+                            <div class="ring-particle particle-data">📊</div>
+                            <div class="ring-particle particle-research">📚</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="1400">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <div class="scroll-text">Scroll to explore</div>
+            <div class="scroll-arrow">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section with Advanced Animations -->
+    <section id="about" class="about">
+        <div class="section-bg">
+            <div class="floating-elements">
+                <div class="floating-element element-1"></div>
+                <div class="floating-element element-2"></div>
+                <div class="floating-element element-3"></div>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <div class="section-tag">About Me</div>
+                <h2 class="section-title">
+                    <span class="title-gradient">Passionate About</span><br>
+                    <span class="title-highlight">Bridging AI and Biology</span>
+                </h2>
+                <div class="title-underline"></div>
+                <p class="section-subtitle">Exploring the intersection of technology and life sciences</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-content" data-aos="fade-right" data-aos-delay="200">
+                    <div class="about-card primary-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-dna"></i>
+                            </div>
+                            <h3>Bioinformatics Expertise</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>Currently pursuing MSc in Bioinformatics at <strong>Amrita School of Biotechnology</strong> 
+                            with a stellar CGPA of <strong>8.06</strong>. Specialized in computational biology, 
+                            genomics analysis, and molecular modeling using cutting-edge algorithms and AI techniques.</p>
+                        </div>
+                        <div class="card-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Genomics & Precision Medicine</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Computational Biology</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Molecular Modeling</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-card secondary-card" data-aos="fade-right" data-aos-delay="400">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h3>Innovation & Research</h3>
+                        </div>
+                        <div class="card-content">
+                            <p>Dedicated to developing web-based bioinformatics tools and applications that solve 
+                            real-world research challenges. Strong advocate for <strong>open-source</strong> 
+                            development and <strong>collaborative science</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-achievements" data-aos="fade-left" data-aos-delay="300">
+                    <div class="achievement-grid">
+                        <div class="achievement-card">
+                            <div class="achievement-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4 class="achievement-number" data-count="8.06">8.06</h4>
+                                <p class="achievement-label">Current CGPA</p>
+                                <div class="achievement-bar">
+                                    <div class="achievement-progress" data-width="90%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="achievement-card">
+                            <div class="achievement-icon">
+                                <i class="fas fa-code-branch"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4 class="achievement-number" data-count="10">6</h4>
+                                <p class="achievement-label">Major Projects</p>
+                                <div class="achievement-bar">
+                                    <div class="achievement-progress" data-width="100%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="achievement-card">
+                            <div class="achievement-icon">
+                                <i class="fas fa-award"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4 class="achievement-number" data-count="3">2</h4>
+                                <p class="achievement-label">Awards Won</p>
+                                <div class="achievement-bar">
+                                    <div class="achievement-progress" data-width="85%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="achievement-card">
+                            <div class="achievement-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4 class="achievement-number" data-count="2">1</h4>
+                                <p class="achievement-label">Publications</p>
+                                <div class="achievement-bar">
+                                    <div class="achievement-progress" data-width="75%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="expertise-tags" data-aos="fade-up" data-aos-delay="600">
+                        <h4>Core Expertise</h4>
+                        <div class="tags-container">
+                            <span class="expertise-tag">Python</span>
+                            <span class="expertise-tag">R Programming</span>
+                            <span class="expertise-tag">Machine Learning</span>
+                            <span class="expertise-tag">Bioinformatics</span>
+                            <span class="expertise-tag">Data Analysis</span>
+                            <span class="expertise-tag">Web Development</span>
+                            <span class="expertise-tag">Molecular Docking</span>
+                            <span class="expertise-tag">Genomics</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section with Timeline Magic -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <div class="section-tag">Career Journey</div>
+                <h2 class="section-title">
+                    <span class="title-gradient">Professional</span><br>
+                    <span class="title-highlight">Experience</span>
+                </h2>
+                <div class="title-underline"></div>
+                <p class="section-subtitle">Building expertise through hands-on innovation</p>
+            </div>
+
+            <div class="timeline-container" data-aos="fade-up" data-aos-delay="200">
+                <div class="timeline-line">
+                    <div class="timeline-progress" id="timeline-progress"></div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="300">
+                    <div class="timeline-marker">
+                        <div class="marker-ring"></div>
+                        <div class="marker-dot">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-badge">Nov 2024 - Jul 2025</div>
+                        <h3 class="timeline-title">Project Intern</h3>
+                        <h4 class="timeline-company">Amrita Mind Brain Centre</h4>
+                        <p class="timeline-description">
+                            Developed a sophisticated web-based tool for <strong>RNA Secondary Structure prediction</strong> 
+                            using Zuker's Algorithm. Built comprehensive virtual lab experiments for the 
+                            <strong>Government of India's Virtual Labs</strong> initiative at Amrita Vishwa Vidyapeetham.
+                        </p>
+                        <div class="timeline-technologies">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Bioinformatics</span>
+                            <span class="tech-tag">Algorithm Design</span>
+                        </div>
+                        <div class="timeline-achievements">
+                            <div class="achievement-item">
+                                <i class="fas fa-check"></i>
+                                <span>Implemented Zuker's RNA folding algorithm</span>
+                            </div>
+                            <div class="achievement-item">
+                                <i class="fas fa-check"></i>
+                                <span>Created interactive virtual lab simulations</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-left" data-aos-delay="400">
+                    <div class="timeline-marker">
+                        <div class="marker-ring"></div>
+                        <div class="marker-dot">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-badge">Mar 2025 - May 2025</div>
+                        <h3 class="timeline-title">Summer Intern</h3>
+                        <h4 class="timeline-company">Ediglobe</h4>
+                        <p class="timeline-description">
+                            Completed intensive hands-on internship focusing on <strong>Python programming</strong> 
+                            and <strong>Machine Learning</strong> applications. Successfully transitioned theoretical 
+                            knowledge into practical, real-world ML projects.
+                        </p>
+                        <div class="timeline-technologies">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Machine Learning</span>
+                            <span class="tech-tag">Data Science</span>
+                            <span class="tech-tag">Remote Collaboration</span>
+                        </div>
+                        <div class="timeline-achievements">
+                            <div class="achievement-item">
+                                <i class="fas fa-check"></i>
+                                <span>Built predictive ML models</span>
+                            </div>
+                            <div class="achievement-item">
+                                <i class="fas fa-check"></i>
+                                <span>Enhanced Python programming skills</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section with 3D Cards -->
+    <section id="projects" class="projects">
+        <div class="section-bg">
+            <div class="grid-pattern"></div>
+        </div>
+        
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <div class="section-tag">Portfolio</div>
+                <h2 class="section-title">
+                    <span class="title-gradient">Featured</span><br>
+                    <span class="title-highlight">Projects</span>
+                </h2>
+                <div class="title-underline"></div>
+                <p class="section-subtitle">Innovative solutions at the intersection of AI and Biology</p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1: CHD Risk Predictor -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-glow"></div>
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge live">Live</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">CHD Risk Predictor</h3>
+                        <p class="project-description">
+                            Advanced machine learning model predicting 10-year coronary heart disease risk 
+                            using the Framingham Heart Study dataset with sophisticated classification techniques.
+                        </p>
+                        <div class="project-features">
+                            <div class="feature">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Predictive Analytics</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-database"></i>
+                                <span>Large Dataset Processing</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-tech">
+                            <span class="tech-pill">Python</span>
+                            <span class="tech-pill">Scikit-learn</span>
+                            <span class="tech-pill">Pandas</span>
+                            <span class="tech-pill">ML</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ShubhamBioIT/CHD_Risk_Predictor" 
+                               target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-shine"></div>
+                </div>
+
+                <!-- Project 2: RNA Structure Tool -->
+                <div class="project-card featured" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-glow"></div>
+                    <div class="featured-badge">
+                        <i class="fas fa-star"></i>
+                        <span>Featured</span>
+                    </div>
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-dna"></i>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge completed">Completed</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">RNA Structure Prediction Tool</h3>
+                        <p class="project-description">
+                            Interactive web-based simulation tool implementing Zuker's Algorithm for RNA secondary 
+                            structure prediction. Part of Government of India's Virtual Labs initiative.
+                        </p>
+                        <div class="project-features">
+                            <div class="feature">
+                                <i class="fas fa-flask"></i>
+                                <span>Virtual Lab Simulation</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-algorithm"></i>
+                                <span>Advanced Algorithms</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-tech">
+                            <span class="tech-pill">HTML5</span>
+                            <span class="tech-pill">CSS3</span>
+                            <span class="tech-pill">JavaScript</span>
+                            <span class="tech-pill">Bioinformatics</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ShubhamBioIT" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-shine"></div>
+                </div>
+
+                <!-- Project 3: Drug-Target Binding -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card-glow"></div>
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge completed">Completed</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Drug-Target Binding Affinity Explorer</h3>
+                        <p class="project-description">
+                            Interactive Streamlit application for analyzing and visualizing drug-target binding 
+                            patterns based on Ki values for advanced bioinformatics research.
+                        </p>
+                        <div class="project-features">
+                            <div class="feature">
+                                <i class="fas fa-chart-bar"></i>
+                                <span>Data Visualization</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-search"></i>
+                                <span>Drug Discovery</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-tech">
+                            <span class="tech-pill">Python</span>
+                            <span class="tech-pill">Streamlit</span>
+                            <span class="tech-pill">Analysis</span>
+                            <span class="tech-pill">Viz</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ShubhamBioIT/Protein-Drug-affinity-visualizer" 
+                               target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="#" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-shine"></div>
+                </div>
+
+                <!-- Additional Projects -->
+                <div class="project-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="card-glow"></div>
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge completed">Completed</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Huntington's Disease ML Predictor</h3>
+                        <p class="project-description">
+                            Sophisticated machine learning model for predicting Huntington's Disease severity 
+                            stages using genetic and clinical features with advanced classification algorithms.
+                        </p>
+                        <div class="project-features">
+                            <div class="feature">
+                                <i class="fas fa-dna"></i>
+                                <span>Genetic Analysis</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-stethoscope"></i>
+                                <span>Clinical Data</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-tech">
+                            <span class="tech-pill">ML</span>
+                            <span class="tech-pill">Genetics</span>
+                            <span class="tech-pill">Python</span>
+                            <span class="tech-pill">Healthcare</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ShubhamBioIT" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-shine"></div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="card-glow"></div>
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge completed">Completed</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">IMDB Movies Analysis</h3>
+                        <p class="project-description">
+                            Comprehensive exploratory data analysis of IMDb movie dataset using Python, 
+                            revealing valuable insights into movie trends, ratings, and industry patterns.
+                        </p>
+                        <div class="project-features">
+                            <div class="feature">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Trend Analysis</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-star"></i>
+                                <span>Rating Insights</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-tech">
+                            <span class="tech-pill">Python</span>
+                            <span class="tech-pill">Pandas</span>
+                            <span class="tech-pill">EDA</span>
+                            <span class="tech-pill">Viz</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ShubhamBioIT/IMDB-Movies-Analysis" 
+                               target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-shine"></div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="700">
+                    <div class="card-glow"></div>
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-atom"></i>
+                        </div>
+                        <div class="project-status">
+                            <span class="status-badge completed">Completed</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Molecular Docking Analysis</h3>
+                        <p class="project-description">
+                            In silico docking study of STOCK6S-84928 with Sterol 24-C-Methyltransferase in 
+                            Leishmania donovani using AutoDock Vina and Discovery Studio.
+                        </p>
+                        <div class="project-features">
+                            <div class="feature">
+                                <i class="fas fa-cube"></i>
+                                <span>3D Modeling</span>
+                            </div>
+                            <div class="feature">
+                                <i class="fas fa-pills"></i>
+                                <span>Drug Design</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-footer">
+                        <div class="project-tech">
+                            <span class="tech-pill">AutoDock</span>
+                            <span class="tech-pill">Docking</span>
+                            <span class="tech-pill">Discovery</span>
+                            <span class="tech-pill">Drug</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ShubhamBioIT" target="_blank" class="project-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-shine"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section with Interactive Elements -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <div class="section-tag">Expertise</div>
+                <h2 class="section-title">
+                    <span class="title-gradient">Technical</span><br>
+                    <span class="title-highlight">Skills</span>
+                </h2>
+                <div class="title-underline"></div>
+                <p class="section-subtitle">Mastery across multiple technological domains</p>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-dna"></i>
+                        </div>
+                        <h3>Bioinformatics</h3>
+                        <p>Computational biology and genomics analysis</p>
+                    </div>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">BLAST+, ClustalW, NCBI</span>
+                                <span class="skill-level">Expert</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">PyMOL, AlphaFold, ExPASy</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Molecular Docking</span>
+                                <span class="skill-level">Intermediate</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="88%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3>AI/ML</h3>
+                        <p>Machine learning and artificial intelligence</p>
+                    </div>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Scikit-learn, XGBoost</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Deep Learning (CNNs, Transformers)</span>
+                                <span class="skill-level">Intermediate</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">GenAI Applications</span>
+                                <span class="skill-level">Intermediate</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="400">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Programming</h3>
+                        <p>Software development and scripting</p>
+                    </div>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Python</span>
+                                <span class="skill-level">Expert</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">R Programming</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="88%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">HTML/CSS/JavaScript</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="92%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="500">
+                    <div class="category-header">
+                        <div class="category-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>Data Science</h3>
+                        <p>Data analysis and visualization</p>
+                    </div>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Pandas, NumPy</span>
+                                <span class="skill-level">Expert</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="93%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Matplotlib, Seaborn</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="87%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Streamlit</span>
+                                <span class="skill-level">Advanced</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="certifications-section" data-aos="fade-up" data-aos-delay="600">
+                <h3>Certifications & Achievements</h3>
+                <div class="certifications-grid">
+                    <div class="cert-card">
+                        <div class="cert-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="cert-content">
+                            <h4>Best Paper Award</h4>
+                            <p>ICSRF'2025 - First Place</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="cert-content">
+                            <h4>ML in Genomics</h4>
+                            <p>3-Day Workshop - IBAB</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-icon">
+                            <i class="fab fa-google"></i>
+                        </div>
+                        <div class="cert-content">
+                            <h4>GenAI Certificate</h4>
+                            <p>Google Cloud Platform</p>
+                        </div>
+                    </div>
+                    <div class="cert-card">
+                        <div class="cert-icon">
+                            <i class="fas fa-dna"></i>
+                        </div>
+                        <div class="cert-content">
+                            <h4>Clustering with Python</h4>
+                            <p>Vasista Genomics Lab</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section with Perfect Spacing -->
+    <section id="contact" class="contact">
+        <div class="section-bg">
+            <div class="contact-particles"></div>
+        </div>
+        
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <div class="section-tag">Get In Touch</div>
+                <h2 class="section-title">
+                    <span class="title-gradient">Let's</span><br>
+                    <span class="title-highlight">Collaborate</span>
+                </h2>
+                <div class="title-underline"></div>
+                <p class="section-subtitle">Ready to work on innovative bioinformatics projects together</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info" data-aos="fade-right" data-aos-delay="200">
+                    <div class="contact-card">
+                        <div class="card-header">
+                            <h3>Let's Connect</h3>
+                            <p>I'm always excited to discuss new opportunities and collaborations in bioinformatics and AI.</p>
+                        </div>
+                        
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="method-content">
+                                    <h4>Email</h4>
+                                    <p>Drop me a line anytime</p>
+                                    <a href="mailto:shubhammahindrakar2104@gmail.com" class="contact-link">
+                                        shubhammahindrakar2104@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="method-content">
+                                    <h4>Phone</h4>
+                                    <p>Call for urgent matters</p>
+                                    <a href="tel:+919307414686" class="contact-link">
+                                        +91 9307414686
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="method-content">
+                                    <h4>Location</h4>
+                                    <p>Based in Kerala, India</p>
+                                    <span class="contact-text">Kollam, Kerala, India</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-section">
+                            <h4>Follow My Journey</h4>
+                            <div class="social-links">
+                                <a href="https://www.linkedin.com/in/shubham-mahindrakar-132394283/" 
+                                   target="_blank" class="social-link linkedin">
+                                    <i class="fab fa-linkedin"></i>
+                                    <span>LinkedIn</span>
+                                </a>
+                                <a href="https://github.com/ShubhamBioIT" 
+                                   target="_blank" class="social-link github">
+                                    <i class="fab fa-github"></i>
+                                    <span>GitHub</span>
+                                </a>
+                                <a href="mailto:shubhammahindrakar2104@gmail.com" 
+                                   class="social-link email">
+                                    <i class="fas fa-envelope"></i>
+                                    <span>Email</span>
+                                </a>
+                                <a href="https://github.com/ShubhamBioIT/Shubham-Mahindrakar-FlowCV-Resume-20251004.pdf" 
+                                   target="_blank" class="social-link resume">
+                                    <i class="fas fa-file-alt"></i>
+                                    <span>Resume</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-section" data-aos="fade-left" data-aos-delay="300">
+                    <div class="form-container">
+                        <div class="form-header">
+                            <h3>Send Message</h3>
+                            <p>Let's discuss your project or collaboration ideas</p>
+                        </div>
+
+                        <form class="contact-form" id="contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <div class="input-wrapper">
+                                        <input type="text" id="firstName" name="firstName" required>
+                                        <label for="firstName">First Name</label>
+                                        <div class="input-line"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-wrapper">
+                                        <input type="text" id="lastName" name="lastName" required>
+                                        <label for="lastName">Last Name</label>
+                                        <div class="input-line"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <div class="input-wrapper">
+                                        <input type="email" id="email" name="email" required>
+                                        <label for="email">Email Address</label>
+                                        <div class="input-line"></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-wrapper">
+                                        <input type="tel" id="phone" name="phone">
+                                        <label for="phone">Phone (Optional)</label>
+                                        <div class="input-line"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-wrapper">
+                                    <input type="text" id="subject" name="subject" required>
+                                    <label for="subject">Subject</label>
+                                    <div class="input-line"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-wrapper">
+                                    <textarea id="message" name="message" rows="6" required></textarea>
+                                    <label for="message">Message</label>
+                                    <div class="input-line"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="submit-btn">
+                                    <span class="btn-text">Send Message</span>
+                                    <div class="btn-ripple"></div>
+                                    <i class="fas fa-paper-plane btn-icon"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bg">
+            <div class="footer-stars"></div>
+        </div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <span>SM</span>
+                        </div>
+                        <h3>Shubham Mahindrakar</h3>
+                        <p class="footer-tagline">
+                            "Combining Artificial Intelligence with Biological Intelligence 
+                            to decode the language of life."
+                        </p>
+                    </div>
+
+                    <div class="footer-links">
+                        <div class="link-group">
+                            <h4>Quick Links</h4>
+                            <ul>
+                                <li><a href="#home">Home</a></li>
+                                <li><a href="#about">About</a></li>
+                                <li><a href="#experience">Experience</a></li>
+                                <li><a href="#projects">Projects</a></li>
+                            </ul>
+                        </div>
+                        <div class="link-group">
+                            <h4>Connect</h4>
+                            <ul>
+                                <li><a href="https://www.linkedin.com/in/shubham-mahindrakar-132394283/" target="_blank">LinkedIn</a></li>
+                                <li><a href="https://github.com/ShubhamBioIT" target="_blank">GitHub</a></li>
+                                <li><a href="mailto:shubhammahindrakar2104@gmail.com">Email</a></li>
+                                <li><a href="https://github.com/ShubhamBioIT/Shubham-Mahindrakar-FlowCV-Resume-20251004.pdf" target="_blank">Resume</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <div class="copyright">
+                        <p>&copy; 2025 Shubham Mahindrakar. All rights reserved.</p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/shubham-mahindrakar-132394283/" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/ShubhamBioIT" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:shubhammahindrakar2104@gmail.com">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="scroll-to-top" id="scrollToTop">
+        <div class="scroll-icon">
+            <i class="fas fa-arrow-up"></i>
+        </div>
+        <div class="scroll-progress">
+            <svg class="progress-ring" width="50" height="50">
+                <circle class="progress-ring__circle" stroke="#667eea" stroke-width="3" 
+                        fill="transparent" r="22" cx="25" cy="25"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-trail" id="cursor-trail"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
