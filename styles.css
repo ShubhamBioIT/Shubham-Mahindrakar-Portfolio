@@ -968,7 +968,8 @@ body.no-scroll {
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px);
+    /* Remove translateY to keep button in place */
+    transform: scale(1.05);
     box-shadow: 0 20px 40px rgba(255, 107, 107, 0.6);
 }
 
@@ -986,7 +987,8 @@ body.no-scroll {
 .btn-secondary:hover {
     background: rgba(255, 255, 255, 0.1);
     border-color: var(--text-white);
-    transform: translateY(-3px);
+    /* Remove translateY to keep button in place */
+    transform: scale(1.05);
     box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2);
 }
 
@@ -1527,10 +1529,12 @@ section {
 }
 
 .about-card:hover {
-    transform: translateY(-10px);
+    /* Remove translateY to prevent position change */
+    transform: scale(1.01);
     box-shadow: var(--shadow-xl);
     border-color: var(--border-glow);
 }
+
 
 .primary-card {
     background: linear-gradient(135deg, var(--bg-card) 0%, rgba(102, 126, 234, 0.05) 100%);
@@ -1652,9 +1656,11 @@ section {
 }
 
 .achievement-card:hover {
-    transform: translateY(-5px);
+    /* Remove translateY to prevent position change */
+    transform: scale(1.02);
     box-shadow: var(--shadow-lg);
 }
+
 
 .achievement-icon {
     width: 60px;
@@ -1905,10 +1911,12 @@ section {
 }
 
 .timeline-content:hover {
-    transform: translateY(-5px);
+    /* Remove translateY to prevent position change */
+    transform: scale(1.01);
     box-shadow: var(--shadow-xl);
     border-color: var(--border-glow);
 }
+
 
 .timeline-content::before {
     content: '';
@@ -2081,9 +2089,12 @@ section {
 }
 
 .project-card:hover {
-    transform: translateY(-15px) rotateX(5deg);
+    /* Remove translateY to prevent position change */
+    transform: rotateX(2deg) scale(1.02);
     box-shadow: var(--shadow-xl);
+    border-color: var(--border-glow);
 }
+
 
 .card-glow {
     position: absolute;
@@ -2356,10 +2367,12 @@ section {
 }
 
 .skill-category:hover {
-    transform: translateY(-10px) scale(1.02);
+    /* Remove translateY to prevent position change */
+    transform: scale(1.02);
     box-shadow: var(--shadow-xl);
     border-color: var(--border-glow);
 }
+
 
 .skill-category::before {
     content: '';
@@ -2656,10 +2669,12 @@ section {
 }
 
 .contact-card:hover {
-    transform: translateY(-5px);
+    /* Remove translateY to prevent position change */
+    transform: scale(1.01);
     box-shadow: var(--shadow-xl);
     border-color: var(--border-glow);
 }
+
 
 .contact-card::before {
     content: '';
@@ -2722,8 +2737,9 @@ section {
 
 .contact-method:hover {
     background: rgba(102, 126, 234, 0.1);
-    transform: translateX(10px);
+    /* Remove translateX to prevent position change */
     border-color: var(--border-glow);
+    box-shadow: var(--shadow-sm);
 }
 
 .method-icon {
@@ -2828,28 +2844,30 @@ section {
     background: #0077b5;
     color: white;
     border-color: #0077b5;
-    transform: translateY(-3px);
+    /* Remove translateY to prevent position change */
+    transform: scale(1.05);
 }
+
 
 .social-link.github:hover {
     background: #333;
     color: white;
     border-color: #333;
-    transform: translateY(-3px);
+    transform: scale(1.05);
 }
 
 .social-link.email:hover {
     background: #ea4335;
     color: white;
     border-color: #ea4335;
-    transform: translateY(-3px);
+    transform: scale(1.05);
 }
 
 .social-link.resume:hover {
     background: var(--primary-gradient);
     color: white;
     border-color: transparent;
-    transform: translateY(-3px);
+    transform: scale(1.05);
 }
 
 .contact-form-section {
@@ -3005,8 +3023,11 @@ section {
     box-shadow: var(--shadow-md);
 }
 
+
+
 .submit-btn:hover {
-    transform: translateY(-3px);
+    /* Remove translateY to keep button clickable */
+    transform: scale(1.02);
     box-shadow: var(--shadow-lg);
 }
 
