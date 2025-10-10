@@ -1,6 +1,6 @@
 # 🚀 Shubham Mahindrakar - AI-Driven Bioinformatics Portfolio
 
-[![Live Portfolio](https://img.shields.io/badge/Live-Portfolio-brightgreen?style=for-the-badge&logo=github-pages)](https://ShubhamBioIT.github.io/)
+[![Live Portfolio](https://img.shields.io/badge/Live-Portfolio-brightgreen?style=for-the-badge&logo=github-pages)](https://shubhambioit.github.io/Shubham-Mahindrakar-Portfolio/)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/ShubhamBioIT/ShubhamBioIT.github.io)
 
 > **"Combining Artificial Intelligence with Biological Intelligence to decode the language of life."**
@@ -46,7 +46,7 @@
 
 ## 🚀 Quick Start
 
-1. Visit the [live portfolio](https://ShubhamBioIT.github.io/)
+1. Visit the [live portfolio](https://shubhambioit.github.io/Shubham-Mahindrakar-Portfolio/)
 2. Explore the interactive features
 3. Try the theme toggle and custom cursor
 4. Don't forget to try the Konami code! ⬆️⬆️⬇️⬇️⬅️➡️⬅️➡️BA
