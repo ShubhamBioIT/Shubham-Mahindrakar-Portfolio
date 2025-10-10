@@ -757,13 +757,15 @@ class Timeline {
             if (content && marker) {
                 content.addEventListener('mouseenter', () => {
                     marker.style.transform = 'translateX(-50%) scale(1.2)';
-                    content.style.transform = 'translateY(-10px)';
+                    // Remove translateY to prevent position change
+                    content.style.boxShadow = 'var(--shadow-xl)';
                 });
-                
+
                 content.addEventListener('mouseleave', () => {
                     marker.style.transform = 'translateX(-50%) scale(1)';
-                    content.style.transform = 'translateY(0)';
+                    content.style.boxShadow = '';
                 });
+
             }
         });
     }
@@ -812,17 +814,18 @@ class ProjectCards {
                 const rect = card.getBoundingClientRect();
                 const centerX = rect.left + rect.width / 2;
                 const centerY = rect.top + rect.height / 2;
-                
-                const rotateX = (e.clientY - centerY) / 10;
-                const rotateY = (centerX - e.clientX) / 10;
-                
+    
+                // Reduce rotation intensity for subtlety
+                const rotateX = (e.clientY - centerY) / 20;
+                const rotateY = (centerX - e.clientX) / 20;
+    
                 cardInner.style.transform = `
                     perspective(1000px) 
                     rotateX(${rotateX}deg) 
-                    rotateY(${rotateY}deg) 
-                    translateZ(10px)
+                    rotateY(${rotateY}deg)
                 `;
             });
+
             
             card.addEventListener('mouseleave', () => {
                 cardInner.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
@@ -865,26 +868,25 @@ class ProjectCards {
     setupMagneticEffect() {
         this.cards.forEach(card => {
             const links = card.querySelectorAll('.project-link');
-            
+        
             links.forEach(link => {
-                link.addEventListener('mousemove', (e) => {
-                    const rect = link.getBoundingClientRect();
-                    const centerX = rect.left + rect.width / 2;
-                    const centerY = rect.top + rect.height / 2;
-                    
-                    const deltaX = (e.clientX - centerX) * 0.3;
-                    const deltaY = (e.clientY - centerY) * 0.3;
-                    
-                    link.style.transform = `translate(${deltaX}px, ${deltaY}px) scale(1.1)`;
+                link.addEventListener('mouseenter', () => {
+                    // Simple scale effect without position change
+                    link.style.transform = 'scale(1.1)';
+                    link.style.boxShadow = 'var(--shadow-md)';
                 });
-                
+            
                 link.addEventListener('mouseleave', () => {
-                    link.style.transform = 'translate(0, 0) scale(1)';
+                    link.style.transform = 'scale(1)';
+                    link.style.boxShadow = '';
                 });
             });
         });
     }
 }
+
+
+
 
 // =============================================
 // ADVANCED SKILL BARS WITH ANIMATIONS
