@@ -91,6 +91,243 @@ const createRipple = (element, event) => {
     }, 600);
 };
 
+
+// =============================================
+// ENHANCED DNA HELIX INTERACTIONS
+// =============================================
+
+class DNAHelix {
+    constructor() {
+        this.container = document.querySelector('.dna-container');
+        this.bioElements = document.querySelectorAll('.bio-element');
+        this.centralLogo = document.querySelector('.central-logo');
+    }
+
+    init() {
+        if (!this.container) return;
+        
+        this.setupBioElementInteractions();
+        this.setupCentralLogoInteractions();
+        this.createParticleSystem();
+    }
+
+    setupBioElementInteractions() {
+        this.bioElements.forEach(element => {
+            element.addEventListener('click', (e) => {
+                this.createSkillExplosion(element);
+                this.showSkillTooltip(element);
+            });
+        });
+    }
+
+    createSkillExplosion(element) {
+        const rect = element.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const color = getComputedStyle(element).borderColor;
+
+        for (let i = 0; i < 8; i++) {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+                position: fixed;
+                width: 6px;
+                height: 6px;
+                background: ${color};
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+                left: ${centerX}px;
+                top: ${centerY}px;
+            `;
+            
+            document.body.appendChild(particle);
+            
+            const angle = (i / 8) * Math.PI * 2;
+            const distance = 40;
+            const x = Math.cos(angle) * distance;
+            const y = Math.sin(angle) * distance;
+            
+            particle.animate([
+                { 
+                    transform: 'translate(-50%, -50%) scale(0)', 
+                    opacity: 1
+                },
+                { 
+                    transform: `translate(${x}px, ${y}px) scale(1)`, 
+                    opacity: 0
+                }
+            ], {
+                duration: 1000,
+                easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+            }).onfinish = () => particle.remove();
+        }
+    }
+
+    showSkillTooltip(element) {
+        const skillName = element.querySelector('span').textContent;
+        const tooltip = document.createElement('div');
+        
+        const skillDescriptions = {
+            'AI': 'Artificial Intelligence & Machine Learning',
+            'Genomics': 'DNA Sequencing & Analysis',
+            'Python': 'Programming & Data Science',
+            'Data Science': 'Statistical Analysis & Visualization',
+            'Research': 'Academic Publications & Innovation',
+            'ML': 'Predictive Modeling & Algorithms'
+        };
+        
+        tooltip.innerHTML = `
+            <strong>${skillName}</strong><br>
+            <small>${skillDescriptions[skillName] || 'Specialized Expertise'}</small>
+        `;
+        
+        tooltip.style.cssText = `
+            position: fixed;
+            top: ${element.getBoundingClientRect().top - 80}px;
+            left: ${element.getBoundingClientRect().left + element.offsetWidth / 2}px;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            z-index: 9999;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            text-align: center;
+            min-width: 120px;
+        `;
+        
+        document.body.appendChild(tooltip);
+        
+        setTimeout(() => {
+            tooltip.style.opacity = '1';
+            tooltip.style.transform = 'translateX(-50%) translateY(-5px)';
+        }, 10);
+        
+        setTimeout(() => {
+            tooltip.style.opacity = '0';
+            setTimeout(() => tooltip.remove(), 300);
+        }, 2500);
+    }
+
+    setupCentralLogoInteractions() {
+        if (!this.centralLogo) return;
+
+        this.centralLogo.addEventListener('click', () => {
+            this.createLogoExplosion();
+        });
+
+        this.centralLogo.addEventListener('mouseenter', () => {
+            this.centralLogo.style.transform = 'scale(1.1)';
+        });
+
+        this.centralLogo.addEventListener('mouseleave', () => {
+            this.centralLogo.style.transform = 'scale(1)';
+        });
+    }
+
+    createLogoExplosion() {
+        const rect = this.centralLogo.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const colors = ['#667eea', '#ff6b6b', '#feca57', '#4ecdc4', '#ff9ff3'];
+
+        for (let i = 0; i < 15; i++) {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+                position: fixed;
+                width: 8px;
+                height: 8px;
+                background: ${colors[Math.floor(Math.random() * colors.length)]};
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+                left: ${centerX}px;
+                top: ${centerY}px;
+            `;
+            
+            document.body.appendChild(particle);
+            
+            const angle = (i / 15) * Math.PI * 2;
+            const distance = Math.random() * 80 + 40;
+            const x = Math.cos(angle) * distance;
+            const y = Math.sin(angle) * distance;
+            
+            particle.animate([
+                { 
+                    transform: 'translate(-50%, -50%) scale(0) rotate(0deg)', 
+                    opacity: 1
+                },
+                { 
+                    transform: `translate(${x}px, ${y}px) scale(1) rotate(360deg)`, 
+                    opacity: 0
+                }
+            ], {
+                duration: Math.random() * 1000 + 1500,
+                easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+            }).onfinish = () => particle.remove();
+        }
+    }
+
+    createParticleSystem() {
+        // Create ambient floating particles
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                this.createAmbientParticle();
+            }
+        }, 2000);
+    }
+
+    createAmbientParticle() {
+        const container = this.container;
+        if (!container) return;
+
+        const particle = document.createElement('div');
+        const size = Math.random() * 4 + 2;
+        
+        particle.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+        `;
+        
+        container.appendChild(particle);
+        
+        particle.animate([
+            { 
+                opacity: 0,
+                transform: 'scale(0) translateY(0px)'
+            },
+            { 
+                opacity: 1,
+                transform: 'scale(1) translateY(-20px)',
+                offset: 0.3
+            },
+            { 
+                opacity: 0,
+                transform: 'scale(0) translateY(-40px)'
+            }
+        ], {
+            duration: 4000,
+            easing: 'ease-out'
+        }).onfinish = () => particle.remove();
+    }
+}
+
+// Initialize DNA Helix in the main initialization function
+// Add this line to your initializePortfolio() function:
+const dnaHelix = new DNAHelix();
+dnaHelix.init();
+
+
+
 // =============================================
 // ADVANCED LOADING SCREEN WITH SPACE ANIMATION
 // =============================================
@@ -1867,3 +2104,4 @@ console.log(`
 `);
 
 /* End of the most spectacular JavaScript ever created! */
+
