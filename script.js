@@ -1,6 +1,6 @@
 /* =============================================
-   ULTIMATE PORTFOLIO JAVASCRIPT - WORLD'S BEST
-   Created with maximum potential and passion! 🚀
+   ULTIMATE PORTFOLIO JAVASCRIPT - UPDATED VERSION
+   All fixes and enhancements included! 🚀
    ============================================= */
 
 // =============================================
@@ -9,8 +9,6 @@
 
 const CONFIG = {
     loadingDuration: 4000,
-    typingSpeed: 100,
-    typingDelay: 2000,
     constellationNodes: 50,
     particleCount: 100,
     animationEasing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
@@ -90,251 +88,6 @@ const createRipple = (element, event) => {
         }
     }, 600);
 };
-
-
-// =============================================
-// ENHANCED DNA HELIX INTERACTIONS
-// =============================================
-
-class DNAHelix {
-    constructor() {
-        this.container = document.querySelector('.dna-container');
-        this.bioElements = document.querySelectorAll('.bio-element');
-        this.centralLogo = document.querySelector('.central-logo');
-    }
-
-    init() {
-        if (!this.container) return;
-        
-        this.setupBioElementInteractions();
-        this.setupCentralLogoInteractions();
-        this.createParticleSystem();
-    }
-
-    setupBioElementInteractions() {
-        this.bioElements.forEach(element => {
-            element.addEventListener('click', (e) => {
-                this.createSkillExplosion(element);
-                this.showSkillTooltip(element);
-            });
-        });
-    }
-
-    createSkillExplosion(element) {
-        const rect = element.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        const color = getComputedStyle(element).borderColor;
-
-        for (let i = 0; i < 8; i++) {
-            const particle = document.createElement('div');
-            particle.style.cssText = `
-                position: fixed;
-                width: 6px;
-                height: 6px;
-                background: ${color};
-                border-radius: 50%;
-                pointer-events: none;
-                z-index: 9999;
-                left: ${centerX}px;
-                top: ${centerY}px;
-            `;
-            
-            document.body.appendChild(particle);
-            
-            const angle = (i / 8) * Math.PI * 2;
-            const distance = 40;
-            const x = Math.cos(angle) * distance;
-            const y = Math.sin(angle) * distance;
-            
-            particle.animate([
-                { 
-                    transform: 'translate(-50%, -50%) scale(0)', 
-                    opacity: 1
-                },
-                { 
-                    transform: `translate(${x}px, ${y}px) scale(1)`, 
-                    opacity: 0
-                }
-            ], {
-                duration: 1000,
-                easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-            }).onfinish = () => particle.remove();
-        }
-    }
-
-    showSkillTooltip(element) {
-        const skillName = element.querySelector('span').textContent;
-        const tooltip = document.createElement('div');
-        
-        const skillDescriptions = {
-            'AI': 'Artificial Intelligence & Machine Learning',
-            'Genomics': 'DNA Sequencing & Analysis',
-            'Python': 'Programming & Data Science',
-            'Data Science': 'Statistical Analysis & Visualization',
-            'Research': 'Academic Publications & Innovation',
-            'ML': 'Predictive Modeling & Algorithms'
-        };
-        
-        tooltip.innerHTML = `
-            <strong>${skillName}</strong><br>
-            <small>${skillDescriptions[skillName] || 'Specialized Expertise'}</small>
-        `;
-        
-        tooltip.style.cssText = `
-            position: fixed;
-            top: ${element.getBoundingClientRect().top - 80}px;
-            left: ${element.getBoundingClientRect().left + element.offsetWidth / 2}px;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.9);
-            color: white;
-            padding: 0.75rem;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            z-index: 9999;
-            opacity: 0;
-            transition: all 0.3s ease;
-            pointer-events: none;
-            text-align: center;
-            min-width: 120px;
-        `;
-        
-        document.body.appendChild(tooltip);
-        
-        setTimeout(() => {
-            tooltip.style.opacity = '1';
-            tooltip.style.transform = 'translateX(-50%) translateY(-5px)';
-        }, 10);
-        
-        setTimeout(() => {
-            tooltip.style.opacity = '0';
-            setTimeout(() => tooltip.remove(), 300);
-        }, 2500);
-    }
-
-setupTypingAnimation() {
-    // Remove typing animation since we want static name
-    if (!this.typingElement) return;
-    // Static name is handled by CSS, no JavaScript needed
-}
-
-
-   
-    setupCentralLogoInteractions() {
-        if (!this.centralLogo) return;
-
-        this.centralLogo.addEventListener('click', () => {
-            this.createLogoExplosion();
-        });
-
-        this.centralLogo.addEventListener('mouseenter', () => {
-            this.centralLogo.style.transform = 'scale(1.1)';
-        });
-
-        this.centralLogo.addEventListener('mouseleave', () => {
-            this.centralLogo.style.transform = 'scale(1)';
-        });
-    }
-
-    createLogoExplosion() {
-        const rect = this.centralLogo.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-        const colors = ['#667eea', '#ff6b6b', '#feca57', '#4ecdc4', '#ff9ff3'];
-
-        for (let i = 0; i < 15; i++) {
-            const particle = document.createElement('div');
-            particle.style.cssText = `
-                position: fixed;
-                width: 8px;
-                height: 8px;
-                background: ${colors[Math.floor(Math.random() * colors.length)]};
-                border-radius: 50%;
-                pointer-events: none;
-                z-index: 9999;
-                left: ${centerX}px;
-                top: ${centerY}px;
-            `;
-            
-            document.body.appendChild(particle);
-            
-            const angle = (i / 15) * Math.PI * 2;
-            const distance = Math.random() * 80 + 40;
-            const x = Math.cos(angle) * distance;
-            const y = Math.sin(angle) * distance;
-            
-            particle.animate([
-                { 
-                    transform: 'translate(-50%, -50%) scale(0) rotate(0deg)', 
-                    opacity: 1
-                },
-                { 
-                    transform: `translate(${x}px, ${y}px) scale(1) rotate(360deg)`, 
-                    opacity: 0
-                }
-            ], {
-                duration: Math.random() * 1000 + 1500,
-                easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-            }).onfinish = () => particle.remove();
-        }
-    }
-
-    createParticleSystem() {
-        // Create ambient floating particles
-        setInterval(() => {
-            if (Math.random() > 0.7) {
-                this.createAmbientParticle();
-            }
-        }, 2000);
-    }
-
-    createAmbientParticle() {
-        const container = this.container;
-        if (!container) return;
-
-        const particle = document.createElement('div');
-        const size = Math.random() * 4 + 2;
-        
-        particle.style.cssText = `
-            position: absolute;
-            width: ${size}px;
-            height: ${size}px;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 50%;
-            pointer-events: none;
-            left: ${Math.random() * 100}%;
-            top: ${Math.random() * 100}%;
-        `;
-        
-        container.appendChild(particle);
-        
-        particle.animate([
-            { 
-                opacity: 0,
-                transform: 'scale(0) translateY(0px)'
-            },
-            { 
-                opacity: 1,
-                transform: 'scale(1) translateY(-20px)',
-                offset: 0.3
-            },
-            { 
-                opacity: 0,
-                transform: 'scale(0) translateY(-40px)'
-            }
-        ], {
-            duration: 4000,
-            easing: 'ease-out'
-        }).onfinish = () => particle.remove();
-    }
-}
-
-// Initialize DNA Helix in the main initialization function
-// Add this line to your initializePortfolio() function:
-const dnaHelix = new DNAHelix();
-dnaHelix.init();
-
-
 
 // =============================================
 // ADVANCED LOADING SCREEN WITH SPACE ANIMATION
@@ -664,37 +417,25 @@ class Navigation {
 }
 
 // =============================================
-// SPECTACULAR HERO SECTION WITH SPACE EFFECTS
+// HERO SECTION - NO TYPING ANIMATION (UPDATED)
 // =============================================
 
 class HeroSection {
     constructor() {
-        this.typingElement = document.getElementById('typing-text');
+        // Removed typing animation references
         this.constellationCanvas = document.getElementById('constellation-canvas');
         this.profileContainer = document.querySelector('.profile-container');
-        this.typingTexts = [
-            'Shubham Mahindrakar',
-            'Bioinformatics Expert',
-            'AI Researcher',
-            'Data Scientist',
-            'Tool Developer',
-            'Innovation Pioneer'
-        ];
-        this.currentTextIndex = 0;
-        this.currentCharIndex = 0;
-        this.isDeleting = false;
         this.constellationNodes = [];
     }
 
     init() {
-        // this.setupTypingAnimation();
+        // Removed typing animation setup
         this.setupConstellationCanvas();
         this.setupMeteorShower();
         this.setupProfileInteractions();
         this.setupParallaxEffect();
         this.animateStatNumbers();
     }
-
 
     setupConstellationCanvas() {
         if (!this.constellationCanvas) return;
@@ -808,10 +549,11 @@ class HeroSection {
         const rings = this.profileContainer.querySelectorAll('.ring');
         const particles = this.profileContainer.querySelectorAll('.ring-particle');
 
-        // Interactive hover effects
+        // Interactive hover effects (FIXED - no position changes)
         this.profileContainer.addEventListener('mouseenter', () => {
             rings.forEach((ring, index) => {
                 ring.style.animationPlayState = 'paused';
+                // Removed translateY to prevent position change
                 ring.style.transform = `translate(-50%, -50%) rotate(${index * 60}deg) scale(1.1)`;
             });
         });
@@ -931,28 +673,23 @@ class HeroSection {
 }
 
 // =============================================
-// INTERACTIVE TIMELINE WITH PROGRESS
+// INTERACTIVE TIMELINE WITH PROGRESS (FIXED)
 // =============================================
 
 class Timeline {
     constructor() {
-    // Remove typing element reference since we don't need it
-    // this.typingElement = document.getElementById('typing-text');
-    // ... keep other code
-}
+        this.timeline = document.querySelector('.timeline-container');
+        this.progressLine = document.getElementById('timeline-progress');
+        this.timelineItems = document.querySelectorAll('.timeline-item');
+    }
 
-init() {
-    // Remove typing animation setup
-    // this.setupTypingAnimation();
-    
-    // Keep other methods:
-    this.setupConstellationCanvas();
-    this.setupMeteorShower();
-    this.setupProfileInteractions();
-    this.setupParallaxEffect();
-    this.animateStatNumbers();
-}
-}
+    init() {
+        if (!this.timeline) return;
+        
+        this.setupScrollAnimation();
+        this.setupItemAnimations();
+        this.setupProgressIndicator();
+    }
 
     setupScrollAnimation() {
         const observer = new IntersectionObserver((entries) => {
@@ -977,15 +714,14 @@ init() {
             if (content && marker) {
                 content.addEventListener('mouseenter', () => {
                     marker.style.transform = 'translateX(-50%) scale(1.2)';
-                    // Remove translateY to prevent position change
+                    // FIXED: Remove translateY to prevent position change
                     content.style.boxShadow = 'var(--shadow-xl)';
                 });
-
+                
                 content.addEventListener('mouseleave', () => {
                     marker.style.transform = 'translateX(-50%) scale(1)';
                     content.style.boxShadow = '';
                 });
-
             }
         });
     }
@@ -1011,7 +747,7 @@ init() {
 }
 
 // =============================================
-// 3D PROJECT CARDS WITH ADVANCED EFFECTS
+// 3D PROJECT CARDS - FIXED HOVER EFFECTS
 // =============================================
 
 class ProjectCards {
@@ -1023,7 +759,7 @@ class ProjectCards {
     init() {
         this.setup3DEffects();
         this.setupIntersectionObserver();
-        this.setupMagneticEffect();
+        this.setupClickableElements();
     }
 
     setup3DEffects() {
@@ -1034,21 +770,20 @@ class ProjectCards {
                 const rect = card.getBoundingClientRect();
                 const centerX = rect.left + rect.width / 2;
                 const centerY = rect.top + rect.height / 2;
-    
-                // Reduce rotation intensity for subtlety
+                
+                // FIXED: Reduced rotation intensity and removed translateZ
                 const rotateX = (e.clientY - centerY) / 20;
                 const rotateY = (centerX - e.clientX) / 20;
-    
+                
                 cardInner.style.transform = `
                     perspective(1000px) 
                     rotateX(${rotateX}deg) 
                     rotateY(${rotateY}deg)
                 `;
             });
-
             
             card.addEventListener('mouseleave', () => {
-                cardInner.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+                cardInner.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
             });
             
             // Add click ripple effect
@@ -1085,17 +820,17 @@ class ProjectCards {
         }, 100);
     }
 
-    setupMagneticEffect() {
+    setupClickableElements() {
         this.cards.forEach(card => {
             const links = card.querySelectorAll('.project-link');
-        
+            
             links.forEach(link => {
                 link.addEventListener('mouseenter', () => {
-                    // Simple scale effect without position change
+                    // FIXED: Simple scale effect without position change
                     link.style.transform = 'scale(1.1)';
                     link.style.boxShadow = 'var(--shadow-md)';
                 });
-            
+                
                 link.addEventListener('mouseleave', () => {
                     link.style.transform = 'scale(1)';
                     link.style.boxShadow = '';
@@ -1105,11 +840,8 @@ class ProjectCards {
     }
 }
 
-
-
-
 // =============================================
-// ADVANCED SKILL BARS WITH ANIMATIONS
+// ADVANCED SKILL BARS - FIXED ANIMATIONS
 // =============================================
 
 class SkillBars {
@@ -1166,6 +898,7 @@ class SkillBars {
             category.addEventListener('mouseenter', () => {
                 const icon = category.querySelector('.category-icon');
                 if (icon) {
+                    // FIXED: Removed position change, kept only scale and rotate
                     icon.style.transform = 'scale(1.1) rotate(10deg)';
                     this.createFloatingParticles(icon);
                 }
@@ -1681,7 +1414,7 @@ class ScrollToTop {
 
     setupClickHandler() {
         this.scrollBtn.addEventListener('click', () => {
-            // Add click animation
+            // Add click animation (FIXED: no position change)
             this.scrollBtn.style.transform = 'scale(0.9)';
             setTimeout(() => {
                 this.scrollBtn.style.transform = '';
@@ -1801,6 +1534,236 @@ class CustomCursor {
 }
 
 // =============================================
+// DNA HELIX INTERACTIONS (IF YOU'RE USING THE DNA VERSION)
+// =============================================
+
+class DNAHelix {
+    constructor() {
+        this.container = document.querySelector('.dna-container');
+        this.bioElements = document.querySelectorAll('.bio-element');
+        this.centralLogo = document.querySelector('.central-logo');
+    }
+
+    init() {
+        if (!this.container) return;
+        
+        this.setupBioElementInteractions();
+        this.setupCentralLogoInteractions();
+        this.createParticleSystem();
+    }
+
+    setupBioElementInteractions() {
+        this.bioElements.forEach(element => {
+            element.addEventListener('click', (e) => {
+                this.createSkillExplosion(element);
+                this.showSkillTooltip(element);
+            });
+        });
+    }
+
+    createSkillExplosion(element) {
+        const rect = element.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const color = getComputedStyle(element).borderColor;
+
+        for (let i = 0; i < 8; i++) {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+                position: fixed;
+                width: 6px;
+                height: 6px;
+                background: ${color};
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+                left: ${centerX}px;
+                top: ${centerY}px;
+            `;
+            
+            document.body.appendChild(particle);
+            
+            const angle = (i / 8) * Math.PI * 2;
+            const distance = 40;
+            const x = Math.cos(angle) * distance;
+            const y = Math.sin(angle) * distance;
+            
+            particle.animate([
+                { 
+                    transform: 'translate(-50%, -50%) scale(0)', 
+                    opacity: 1
+                },
+                { 
+                    transform: `translate(${x}px, ${y}px) scale(1)`, 
+                    opacity: 0
+                }
+            ], {
+                duration: 1000,
+                easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+            }).onfinish = () => particle.remove();
+        }
+    }
+
+    showSkillTooltip(element) {
+        const skillName = element.querySelector('span').textContent;
+        const tooltip = document.createElement('div');
+        
+        const skillDescriptions = {
+            'AI': 'Artificial Intelligence & Machine Learning',
+            'Genomics': 'DNA Sequencing & Analysis',
+            'Python': 'Programming & Data Science',
+            'Data Science': 'Statistical Analysis & Visualization',
+            'Research': 'Academic Publications & Innovation',
+            'ML': 'Predictive Modeling & Algorithms'
+        };
+        
+        tooltip.innerHTML = `
+            <strong>${skillName}</strong><br>
+            <small>${skillDescriptions[skillName] || 'Specialized Expertise'}</small>
+        `;
+        
+        tooltip.style.cssText = `
+            position: fixed;
+            top: ${element.getBoundingClientRect().top - 80}px;
+            left: ${element.getBoundingClientRect().left + element.offsetWidth / 2}px;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            z-index: 9999;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            text-align: center;
+            min-width: 120px;
+        `;
+        
+        document.body.appendChild(tooltip);
+        
+        setTimeout(() => {
+            tooltip.style.opacity = '1';
+            tooltip.style.transform = 'translateX(-50%) translateY(-5px)';
+        }, 10);
+        
+        setTimeout(() => {
+            tooltip.style.opacity = '0';
+            setTimeout(() => tooltip.remove(), 300);
+        }, 2500);
+    }
+
+    setupCentralLogoInteractions() {
+        if (!this.centralLogo) return;
+
+        this.centralLogo.addEventListener('click', () => {
+            this.createLogoExplosion();
+        });
+
+        this.centralLogo.addEventListener('mouseenter', () => {
+            // FIXED: No position change
+            this.centralLogo.style.transform = 'scale(1.1)';
+        });
+
+        this.centralLogo.addEventListener('mouseleave', () => {
+            this.centralLogo.style.transform = 'scale(1)';
+        });
+    }
+
+    createLogoExplosion() {
+        const rect = this.centralLogo.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const colors = ['#667eea', '#ff6b6b', '#feca57', '#4ecdc4', '#ff9ff3'];
+
+        for (let i = 0; i < 15; i++) {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+                position: fixed;
+                width: 8px;
+                height: 8px;
+                background: ${colors[Math.floor(Math.random() * colors.length)]};
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+                left: ${centerX}px;
+                top: ${centerY}px;
+            `;
+            
+            document.body.appendChild(particle);
+            
+            const angle = (i / 15) * Math.PI * 2;
+            const distance = Math.random() * 80 + 40;
+            const x = Math.cos(angle) * distance;
+            const y = Math.sin(angle) * distance;
+            
+            particle.animate([
+                { 
+                    transform: 'translate(-50%, -50%) scale(0) rotate(0deg)', 
+                    opacity: 1
+                },
+                { 
+                    transform: `translate(${x}px, ${y}px) scale(1) rotate(360deg)`, 
+                    opacity: 0
+                }
+            ], {
+                duration: Math.random() * 1000 + 1500,
+                easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+            }).onfinish = () => particle.remove();
+        }
+    }
+
+    createParticleSystem() {
+        // Create ambient floating particles
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                this.createAmbientParticle();
+            }
+        }, 2000);
+    }
+
+    createAmbientParticle() {
+        const container = this.container;
+        if (!container) return;
+
+        const particle = document.createElement('div');
+        const size = Math.random() * 4 + 2;
+        
+        particle.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            left: ${Math.random() * 100}%;
+            top: ${Math.random() * 100}%;
+        `;
+        
+        container.appendChild(particle);
+        
+        particle.animate([
+            { 
+                opacity: 0,
+                transform: 'scale(0) translateY(0px)'
+            },
+            { 
+                opacity: 1,
+                transform: 'scale(1) translateY(-20px)',
+                offset: 0.3
+            },
+            { 
+                opacity: 0,
+                transform: 'scale(0) translateY(-40px)'
+            }
+        ], {
+            duration: 4000,
+            easing: 'ease-out'
+        }).onfinish = () => particle.remove();
+    }
+}
+
+// =============================================
 // MAIN INITIALIZATION FUNCTION
 // =============================================
 
@@ -1831,6 +1794,10 @@ function initializePortfolio() {
     
     const customCursor = new CustomCursor();
     customCursor.init();
+    
+    // Initialize DNA Helix if present
+    const dnaHelix = new DNAHelix();
+    dnaHelix.init();
     
     // Initialize AOS (Animate On Scroll)
     if (typeof AOS !== 'undefined') {
@@ -1972,75 +1939,71 @@ function createCelebrationParticle() {
 }
 
 // =============================================
-// CSS ANIMATIONS (Add to head)
-// =============================================
-
-const additionalStyles = `
-<style>
-@keyframes rainbow-mode {
-    0% { filter: hue-rotate(0deg) saturate(1); }
-    50% { filter: hue-rotate(180deg) saturate(1.5); }
-    100% { filter: hue-rotate(360deg) saturate(1); }
-}
-
-@keyframes gradient-shift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-@keyframes ripple-animation {
-    to {
-        transform: scale(4);
-        opacity: 0;
-    }
-}
-
-@keyframes star-twinkle {
-    from { opacity: 0.3; transform: scale(1); }
-    to { opacity: 1; transform: scale(1.2); }
-}
-
-@keyframes meteor-fall {
-    from { 
-        opacity: 0; 
-        transform: translateY(-100px) rotate(45deg); 
-    }
-    10% { 
-        opacity: 1; 
-    }
-    90% { 
-        opacity: 1; 
-    }
-    to { 
-        opacity: 0; 
-        transform: translateY(100vh) rotate(45deg); 
-    }
-}
-
-.section-visible {
-    animation: section-entrance 0.8s ease-out forwards;
-}
-
-@keyframes section-entrance {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-</style>
-`;
-
-// =============================================
 // DOCUMENT READY & ERROR HANDLING
 // =============================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Add additional styles
+    // Add additional styles for animations
+    const additionalStyles = `
+        <style>
+        @keyframes rainbow-mode {
+            0% { filter: hue-rotate(0deg) saturate(1); }
+            50% { filter: hue-rotate(180deg) saturate(1.5); }
+            100% { filter: hue-rotate(360deg) saturate(1); }
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        @keyframes star-twinkle {
+            from { opacity: 0.3; transform: scale(1); }
+            to { opacity: 1; transform: scale(1.2); }
+        }
+
+        @keyframes meteor-fall {
+            from { 
+                opacity: 0; 
+                transform: translateY(-100px) rotate(45deg); 
+            }
+            10% { 
+                opacity: 1; 
+            }
+            90% { 
+                opacity: 1; 
+            }
+            to { 
+                opacity: 0; 
+                transform: translateY(100vh) rotate(45deg); 
+            }
+        }
+
+        .section-visible {
+            animation: section-entrance 0.8s ease-out forwards;
+        }
+
+        @keyframes section-entrance {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        </style>
+    `;
+    
     document.head.insertAdjacentHTML('beforeend', additionalStyles);
     
     // Initialize loading screen
@@ -2066,7 +2029,6 @@ window.addEventListener('unhandledrejection', (e) => {
 // Performance optimization
 if ('requestIdleCallback' in window) {
     requestIdleCallback(() => {
-        // Lazy load non-critical animations
         console.log('🔥 Portfolio is running at peak performance!');
     });
 }
@@ -2080,13 +2042,10 @@ console.log(`
 ╚███╔███╔╝╚██████╔╝██║  ██║███████╗██████╔╝    ███████║    ██████╔╝███████╗███████║   ██║   
  ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═════╝     ╚══════╝    ╚═════╝ ╚══════╝╚══════╝   ╚═╝   
 
-🚀 Shubham Mahindrakar's Portfolio - The Ultimate Interactive Experience
-✨ Combining Artificial Intelligence with Biological Intelligence
-💻 Built with maximum passion and cutting-edge technology
-🌟 Ready to explore the future of bioinformatics!
+🚀 Shubham Mahindrakar's Portfolio - UPDATED & FIXED VERSION
+✨ All hover movements fixed - Elements stay in place
+💻 Static name - No typing animation
+🌟 Perfect clickability - All buttons and links work flawlessly
 `);
 
-/* End of the most spectacular JavaScript ever created! */
-
-
-
+/* End of the COMPLETE UPDATED JavaScript! */
