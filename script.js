@@ -212,6 +212,14 @@ class DNAHelix {
         }, 2500);
     }
 
+setupTypingAnimation() {
+    // Remove typing animation since we want static name
+    if (!this.typingElement) return;
+    // Static name is handled by CSS, no JavaScript needed
+}
+
+
+   
     setupCentralLogoInteractions() {
         if (!this.centralLogo) return;
 
@@ -679,7 +687,7 @@ class HeroSection {
     }
 
     init() {
-        this.setupTypingAnimation();
+        // this.setupTypingAnimation();
         this.setupConstellationCanvas();
         this.setupMeteorShower();
         this.setupProfileInteractions();
@@ -928,18 +936,23 @@ class HeroSection {
 
 class Timeline {
     constructor() {
-        this.timeline = document.querySelector('.timeline-container');
-        this.progressLine = document.getElementById('timeline-progress');
-        this.timelineItems = document.querySelectorAll('.timeline-item');
-    }
+    // Remove typing element reference since we don't need it
+    // this.typingElement = document.getElementById('typing-text');
+    // ... keep other code
+}
 
-    init() {
-        if (!this.timeline) return;
-        
-        this.setupScrollAnimation();
-        this.setupItemAnimations();
-        this.setupProgressIndicator();
-    }
+init() {
+    // Remove typing animation setup
+    // this.setupTypingAnimation();
+    
+    // Keep other methods:
+    this.setupConstellationCanvas();
+    this.setupMeteorShower();
+    this.setupProfileInteractions();
+    this.setupParallaxEffect();
+    this.animateStatNumbers();
+}
+}
 
     setupScrollAnimation() {
         const observer = new IntersectionObserver((entries) => {
@@ -2074,5 +2087,6 @@ console.log(`
 `);
 
 /* End of the most spectacular JavaScript ever created! */
+
 
 
