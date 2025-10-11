@@ -1249,94 +1249,233 @@ body.no-scroll {
     flex-wrap: wrap;
 }
 
+
+/* =============================================
+   PROFESSIONAL BUTTON STYLES - CLEAN & SIMPLE
+   ============================================= */
+
 .btn {
     position: relative;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.75rem;
     padding: 1rem 2rem;
     text-decoration: none;
     border-radius: 50px;
     font-weight: 600;
     font-size: var(--font-base);
-    transition: all var(--transition-normal);
+    transition: all 0.3s ease;
     border: none;
     cursor: pointer;
     overflow: hidden;
     z-index: 1;
+    min-width: 160px;
+    text-align: center;
 }
 
+/* Primary Button - Professional Blue */
 .btn-primary {
     background: #667eea;
-    color: white;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
-    border: none;
+    color: #ffffff;
+    border: 2px solid #667eea;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
     transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
     background: #5a6fd8;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    border-color: #5a6fd8;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.2);
 }
 
 .btn-primary:active {
     transform: translateY(0);
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
 }
 
+.btn-primary:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
 
-
+/* Secondary Button - Professional Transparent */
 .btn-secondary {
     background: transparent;
     color: var(--text-white);
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(10px);
-}
-
-.btn-secondary.btn-magnetic {
-    transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+    transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
     background: rgba(255, 255, 255, 0.1);
-    border-color: var(--text-white);
-    /* Remove translateY to keep button in place */
-    transform: scale(1.05);
-    box-shadow: 0 20px 40px rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.6);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.1);
 }
 
+.btn-secondary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+/* Button Text */
 .btn-text {
     position: relative;
     z-index: 2;
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
+/* Button Icon */
 .btn-icon {
     font-size: 1rem;
-    transition: all var(--transition-normal);
+    transition: all 0.3s ease;
+    margin-left: 0.25rem;
 }
 
 .btn:hover .btn-icon {
-    transform: translateX(2px);
+    transform: translateX(3px);
 }
 
+/* Disabled State */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
 
+.btn:disabled:hover {
+    transform: none;
+    box-shadow: none;
+    background: inherit;
+    border-color: inherit;
+}
+
+/* Button Sizes */
+.btn-sm {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    min-width: 120px;
+}
+
+.btn-lg {
+    padding: 1.25rem 2.5rem;
+    font-size: 1.125rem;
+    min-width: 200px;
+}
+
+/* Loading State (Optional) */
+.btn-loading {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.btn-loading .btn-text {
+    opacity: 0.7;
+}
+
+.btn-loading .btn-icon {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Focus Visible for Accessibility */
+.btn:focus-visible {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* Dark Theme Adjustments */
+[data-theme="dark"] .btn-primary {
+    background: #667eea;
+    color: #ffffff;
+    border-color: #667eea;
+}
+
+[data-theme="dark"] .btn-primary:hover {
+    background: #5a6fd8;
+    border-color: #5a6fd8;
+}
+
+[data-theme="dark"] .btn-secondary {
+    color: var(--text-white);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Remove any leftover effects */
+.btn-primary::before,
+.btn-primary::after,
+.btn-secondary::before,
+.btn-secondary::after {
+    display: none !important;
+}
+
+/* Clean ripple effect removal */
 .btn-ripple {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: translate(-50%, -50%);
-    transition: all 0.6s ease;
+    display: none !important;
 }
 
-.btn-secondary:hover .btn-ripple {
-    width: 300px;
-    height: 300px;
+.btn-particles {
+    display: none !important;
 }
+
+.btn-glow {
+    /* Remove any glow classes */
+}
+
+.btn-magnetic {
+    /* Remove magnetic effects */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .btn {
+        padding: 0.875rem 1.75rem;
+        font-size: 0.9rem;
+        min-width: 140px;
+    }
+    
+    .btn-sm {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.8rem;
+        min-width: 100px;
+    }
+    
+    .btn-lg {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        min-width: 160px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .btn {
+        background: #667eea !important;
+        color: white !important;
+        border: 1px solid #667eea !important;
+        box-shadow: none !important;
+    }
+}
+
 
 .hero-visual {
     display: flex;
@@ -3858,6 +3997,7 @@ section {
 }
 
 /* End of the most spectacular CSS ever created! */
+
 
 
 
