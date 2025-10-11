@@ -81,6 +81,337 @@
 }
 
 /* =============================================
+   3D DNA HELIX HERO VISUAL - SPECTACULAR!
+   ============================================= */
+
+.dna-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+}
+
+.dna-helix-3d {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    animation: dna-rotate 15s linear infinite;
+}
+
+.helix-strand {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.strand-2 {
+    animation: dna-counter-rotate 15s linear infinite reverse;
+}
+
+.base-pair {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(102, 126, 234, 0.6);
+    animation: base-float 3s ease-in-out infinite;
+    animation-delay: var(--delay);
+}
+
+.strand-1 .base-pair {
+    left: 30%;
+    background: linear-gradient(135deg, #667eea, #ff6b6b);
+}
+
+.strand-2 .base-pair {
+    right: 30%;
+    background: linear-gradient(135deg, #feca57, #ff9ff3);
+}
+
+.base-pair:nth-child(1) { top: 5%; transform: rotateY(0deg) translateZ(60px); }
+.base-pair:nth-child(2) { top: 15%; transform: rotateY(45deg) translateZ(60px); }
+.base-pair:nth-child(3) { top: 25%; transform: rotateY(90deg) translateZ(60px); }
+.base-pair:nth-child(4) { top: 35%; transform: rotateY(135deg) translateZ(60px); }
+.base-pair:nth-child(5) { top: 45%; transform: rotateY(180deg) translateZ(60px); }
+.base-pair:nth-child(6) { top: 55%; transform: rotateY(225deg) translateZ(60px); }
+.base-pair:nth-child(7) { top: 65%; transform: rotateY(270deg) translateZ(60px); }
+.base-pair:nth-child(8) { top: 75%; transform: rotateY(315deg) translateZ(60px); }
+
+@keyframes dna-rotate {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+}
+
+@keyframes dna-counter-rotate {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(-360deg); }
+}
+
+@keyframes base-float {
+    0%, 100% { 
+        transform: translateY(0) scale(1); 
+        box-shadow: 0 0 15px rgba(102, 126, 234, 0.6);
+    }
+    50% { 
+        transform: translateY(-10px) scale(1.2); 
+        box-shadow: 0 0 25px rgba(102, 126, 234, 0.8);
+    }
+}
+
+/* Floating Bio Elements */
+.floating-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.bio-element {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation: element-float 6s ease-in-out infinite;
+}
+
+.bio-element i {
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+}
+
+.bio-element:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+.element-ai {
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+    border-color: #ff6b6b;
+}
+
+.element-dna {
+    top: 20%;
+    right: 5%;
+    animation-delay: 1s;
+    border-color: #4ecdc4;
+}
+
+.element-code {
+    bottom: 30%;
+    left: 5%;
+    animation-delay: 2s;
+    border-color: #feca57;
+}
+
+.element-data {
+    bottom: 10%;
+    right: 15%;
+    animation-delay: 3s;
+    border-color: #ff9ff3;
+}
+
+.element-research {
+    top: 50%;
+    left: -5%;
+    animation-delay: 4s;
+    border-color: #a8edea;
+}
+
+.element-ml {
+    top: 40%;
+    right: -5%;
+    animation-delay: 5s;
+    border-color: #fed6e3;
+}
+
+@keyframes element-float {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg); 
+    }
+    25% { 
+        transform: translateY(-15px) rotate(5deg); 
+    }
+    50% { 
+        transform: translateY(-25px) rotate(0deg); 
+    }
+    75% { 
+        transform: translateY(-15px) rotate(-5deg); 
+    }
+}
+
+/* Central Logo */
+.central-logo {
+    position: relative;
+    z-index: 10;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    animation: ring-rotate 8s linear infinite;
+}
+
+.ring-1 {
+    width: 100px;
+    height: 100px;
+    border-color: #667eea;
+    animation-duration: 8s;
+}
+
+.ring-2 {
+    width: 80px;
+    height: 80px;
+    border-color: #ff6b6b;
+    animation-duration: 10s;
+    animation-direction: reverse;
+}
+
+.ring-3 {
+    width: 60px;
+    height: 60px;
+    border-color: #feca57;
+    animation-duration: 12s;
+}
+
+@keyframes ring-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.logo-text {
+    position: relative;
+    z-index: 11;
+    display: flex;
+    gap: 0.2rem;
+    font-size: 2rem;
+    font-weight: 800;
+    color: white;
+    text-shadow: 0 0 20px rgba(102, 126, 234, 0.8);
+}
+
+.name-initial {
+    background: linear-gradient(135deg, #667eea, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: initial-glow 2s ease-in-out infinite alternate;
+}
+
+.name-initial:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+@keyframes initial-glow {
+    from { 
+        filter: drop-shadow(0 0 5px rgba(102, 126, 234, 0.8));
+    }
+    to { 
+        filter: drop-shadow(0 0 15px rgba(255, 107, 107, 0.8));
+    }
+}
+
+/* Status Indicator */
+.status-indicator {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 15;
+}
+
+.pulse-dot {
+    width: 10px;
+    height: 10px;
+    background: #00ff88;
+    border-radius: 50%;
+    animation: status-pulse 2s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+    0%, 100% { 
+        opacity: 1; 
+        transform: scale(1); 
+        box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7);
+    }
+    50% { 
+        opacity: 0.7; 
+        transform: scale(1.1); 
+        box-shadow: 0 0 0 10px rgba(0, 255, 136, 0);
+    }
+}
+
+.status-text {
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dna-container {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .bio-element {
+        width: 50px;
+        height: 50px;
+        font-size: 0.7rem;
+    }
+    
+    .bio-element i {
+        font-size: 1rem;
+    }
+    
+    .central-logo {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .logo-text {
+        font-size: 1.5rem;
+    }
+}
+
+
+
+/* =============================================
    RESET & BASE STYLES
    ============================================= */
 
@@ -3558,3 +3889,4 @@ section {
 }
 
 /* End of the most spectacular CSS ever created! */
+
