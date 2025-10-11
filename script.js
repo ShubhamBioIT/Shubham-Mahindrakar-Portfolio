@@ -687,36 +687,6 @@ class HeroSection {
         this.animateStatNumbers();
     }
 
-    setupTypingAnimation() {
-        if (!this.typingElement) return;
-
-        const typeText = () => {
-            const currentText = this.typingTexts[this.currentTextIndex];
-            
-            if (this.isDeleting) {
-                this.typingElement.textContent = currentText.substring(0, this.currentCharIndex - 1);
-                this.currentCharIndex--;
-            } else {
-                this.typingElement.textContent = currentText.substring(0, this.currentCharIndex + 1);
-                this.currentCharIndex++;
-            }
-
-            let typeSpeed = this.isDeleting ? 50 : CONFIG.typingSpeed;
-
-            if (!this.isDeleting && this.currentCharIndex === currentText.length) {
-                typeSpeed = CONFIG.typingDelay;
-                this.isDeleting = true;
-            } else if (this.isDeleting && this.currentCharIndex === 0) {
-                this.isDeleting = false;
-                this.currentTextIndex = (this.currentTextIndex + 1) % this.typingTexts.length;
-                typeSpeed = 500;
-            }
-
-            setTimeout(typeText, typeSpeed);
-        };
-
-        typeText();
-    }
 
     setupConstellationCanvas() {
         if (!this.constellationCanvas) return;
@@ -2104,4 +2074,5 @@ console.log(`
 `);
 
 /* End of the most spectacular JavaScript ever created! */
+
 
