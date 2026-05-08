@@ -185,10 +185,8 @@ class LoadingScreen {
     }
 
     onLoadComplete() {
-        // Initialize all components after loading
         initializePortfolio();
         
-        // Add entrance animations
         const elements = document.querySelectorAll('[data-aos]');
         elements.forEach((element, index) => {
             setTimeout(() => {
@@ -222,26 +220,22 @@ class Navigation {
     }
 
     setupEventListeners() {
-        // Hamburger menu toggle
         if (this.hamburger && this.navMenu) {
             this.hamburger.addEventListener('click', () => this.toggleMenu());
         }
 
-        // Close menu when clicking nav links
         this.navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 this.handleNavClick(e, link);
             });
         });
 
-        // Close menu when clicking outside
         document.addEventListener('click', (e) => {
             if (this.isMenuOpen && !this.navbar.contains(e.target)) {
                 this.closeMenu();
             }
         });
 
-        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.isMenuOpen) {
                 this.closeMenu();
@@ -254,7 +248,6 @@ class Navigation {
         this.hamburger.classList.toggle('active');
         this.navMenu.classList.toggle('active');
         
-        // Animate menu items
         if (this.isMenuOpen) {
             this.navLinks.forEach((link, index) => {
                 link.style.opacity = '0';
@@ -287,13 +280,8 @@ class Navigation {
                 behavior: 'smooth'
             });
             
-            // Add ripple effect
             createRipple(link, e);
-            
-            // Close mobile menu
             this.closeMenu();
-            
-            // Update active state
             this.updateActiveNavLink(link);
         }
     }
@@ -304,8 +292,6 @@ class Navigation {
                 currentTheme = currentTheme === 'light' ? 'dark' : 'light';
                 this.applyTheme(currentTheme);
                 localStorage.setItem('theme', currentTheme);
-                
-                // Add magic sparkle effect
                 this.createSparkleEffect(this.themeToggle);
             });
         }
@@ -313,17 +299,13 @@ class Navigation {
 
     applyTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
-        
-        // Animate theme transition
         document.body.style.transition = 'all 0.3s ease';
-        
         setTimeout(() => {
             document.body.style.transition = '';
         }, 300);
     }
 
     createSparkleEffect(element) {
-        const sparkles = [];
         const rect = element.getBoundingClientRect();
         
         for (let i = 0; i < 6; i++) {
@@ -341,7 +323,6 @@ class Navigation {
             `;
             
             document.body.appendChild(sparkle);
-            sparkles.push(sparkle);
             
             const angle = (i / 6) * Math.PI * 2;
             const distance = 30;
@@ -353,7 +334,7 @@ class Navigation {
                 { transform: `translate(${x}px, ${y}px) scale(0)`, opacity: 0 }
             ], {
                 duration: 600,
-                easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                easing: CONFIG.animationEasing
             }).onfinish = () => sparkle.remove();
         }
     }
@@ -362,14 +343,12 @@ class Navigation {
         const scrollHandler = throttle(() => {
             const currentScrollY = window.scrollY;
             
-            // Navbar background effect
             if (currentScrollY > 50) {
                 this.navbar.classList.add('scrolled');
             } else {
                 this.navbar.classList.remove('scrolled');
             }
             
-            // Hide/show navbar on scroll
             if (currentScrollY > this.lastScrollY && currentScrollY > 200) {
                 this.navbar.style.transform = 'translateY(-100%)';
             } else {
@@ -417,19 +396,17 @@ class Navigation {
 }
 
 // =============================================
-// HERO SECTION - NO TYPING ANIMATION (UPDATED)
+// HERO SECTION
 // =============================================
 
 class HeroSection {
     constructor() {
-        // Removed typing animation references
         this.constellationCanvas = document.getElementById('constellation-canvas');
         this.profileContainer = document.querySelector('.profile-container');
         this.constellationNodes = [];
     }
 
     init() {
-        // Removed typing animation setup
         this.setupConstellationCanvas();
         this.setupMeteorShower();
         this.setupProfileInteractions();
@@ -442,7 +419,6 @@ class HeroSection {
 
         const canvas = this.constellationCanvas;
         const ctx = canvas.getContext('2d');
-        let animationId;
 
         const resizeCanvas = () => {
             canvas.width = window.innerWidth;
@@ -467,25 +443,21 @@ class HeroSection {
         const animate = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // Update and draw nodes
             this.constellationNodes.forEach(node => {
                 node.x += node.vx;
                 node.y += node.vy;
                 
-                // Wrap around edges
                 if (node.x < 0) node.x = canvas.width;
                 if (node.x > canvas.width) node.x = 0;
                 if (node.y < 0) node.y = canvas.height;
                 if (node.y > canvas.height) node.y = 0;
                 
-                // Draw node
                 ctx.beginPath();
                 ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
                 ctx.fillStyle = `rgba(255, 255, 255, ${node.opacity})`;
                 ctx.fill();
             });
             
-            // Draw connections
             ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
             ctx.lineWidth = 1;
             
@@ -506,7 +478,7 @@ class HeroSection {
                 }
             }
             
-            animationId = requestAnimationFrame(animate);
+            requestAnimationFrame(animate);
         };
 
         resizeCanvas();
@@ -549,11 +521,9 @@ class HeroSection {
         const rings = this.profileContainer.querySelectorAll('.ring');
         const particles = this.profileContainer.querySelectorAll('.ring-particle');
 
-        // Interactive hover effects (FIXED - no position changes)
         this.profileContainer.addEventListener('mouseenter', () => {
             rings.forEach((ring, index) => {
                 ring.style.animationPlayState = 'paused';
-                // Removed translateY to prevent position change
                 ring.style.transform = `translate(-50%, -50%) rotate(${index * 60}deg) scale(1.1)`;
             });
         });
@@ -565,7 +535,6 @@ class HeroSection {
             });
         });
 
-        // Particle click effects
         particles.forEach(particle => {
             particle.addEventListener('click', (e) => {
                 this.createParticleExplosion(e.target);
@@ -601,16 +570,8 @@ class HeroSection {
             const y = Math.sin(angle) * distance;
             
             particle.animate([
-                { 
-                    transform: 'translate(-50%, -50%) scale(1)', 
-                    opacity: 1,
-                    background: CONFIG.colors.primary
-                },
-                { 
-                    transform: `translate(${x}px, ${y}px) scale(0)`, 
-                    opacity: 0,
-                    background: CONFIG.colors.accent
-                }
+                { transform: 'translate(-50%, -50%) scale(1)', opacity: 1, background: CONFIG.colors.primary },
+                { transform: `translate(${x}px, ${y}px) scale(0)`, opacity: 0, background: CONFIG.colors.accent }
             ], {
                 duration: 800,
                 easing: CONFIG.animationEasing
@@ -634,6 +595,7 @@ class HeroSection {
         window.addEventListener('scroll', handleScroll);
     }
 
+    // UPDATED: animateNumber now handles decimals like 8.41
     animateStatNumbers() {
         const statNumbers = document.querySelectorAll('.stat-number');
         const observerOptions = {
@@ -666,14 +628,14 @@ class HeroSection {
                 current = target;
                 clearInterval(timer);
             }
-            
+            // UPDATED: shows 2 decimals for CGPA (8.41), integers for others
             element.textContent = target % 1 === 0 ? Math.floor(current) : current.toFixed(2);
         }, 16);
     }
 }
 
 // =============================================
-// INTERACTIVE TIMELINE WITH PROGRESS (FIXED)
+// INTERACTIVE TIMELINE WITH PROGRESS
 // =============================================
 
 class Timeline {
@@ -714,7 +676,6 @@ class Timeline {
             if (content && marker) {
                 content.addEventListener('mouseenter', () => {
                     marker.style.transform = 'translateX(-50%) scale(1.2)';
-                    // FIXED: Remove translateY to prevent position change
                     content.style.boxShadow = 'var(--shadow-xl)';
                 });
                 
@@ -747,7 +708,7 @@ class Timeline {
 }
 
 // =============================================
-// 3D PROJECT CARDS - FIXED HOVER EFFECTS
+// 3D PROJECT CARDS
 // =============================================
 
 class ProjectCards {
@@ -764,18 +725,15 @@ class ProjectCards {
 
     setup3DEffects() {
         this.cards.forEach(card => {
-            const cardInner = card;
-            
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const centerX = rect.left + rect.width / 2;
                 const centerY = rect.top + rect.height / 2;
                 
-                // FIXED: Reduced rotation intensity and removed translateZ
                 const rotateX = (e.clientY - centerY) / 20;
                 const rotateY = (centerX - e.clientX) / 20;
                 
-                cardInner.style.transform = `
+                card.style.transform = `
                     perspective(1000px) 
                     rotateX(${rotateX}deg) 
                     rotateY(${rotateY}deg)
@@ -783,10 +741,9 @@ class ProjectCards {
             });
             
             card.addEventListener('mouseleave', () => {
-                cardInner.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
             });
             
-            // Add click ripple effect
             card.addEventListener('click', (e) => {
                 createRipple(card, e);
             });
@@ -826,7 +783,6 @@ class ProjectCards {
             
             links.forEach(link => {
                 link.addEventListener('mouseenter', () => {
-                    // FIXED: Simple scale effect without position change
                     link.style.transform = 'scale(1.1)';
                     link.style.boxShadow = 'var(--shadow-md)';
                 });
@@ -841,7 +797,7 @@ class ProjectCards {
 }
 
 // =============================================
-// ADVANCED SKILL BARS - FIXED ANIMATIONS
+// ADVANCED SKILL BARS
 // =============================================
 
 class SkillBars {
@@ -884,7 +840,6 @@ class SkillBars {
         const targetWidth = bar.getAttribute('data-width');
         bar.style.width = targetWidth;
         
-        // Add pulse effect when animation completes
         setTimeout(() => {
             bar.style.boxShadow = `0 0 20px ${CONFIG.colors.primary}40`;
             setTimeout(() => {
@@ -898,7 +853,6 @@ class SkillBars {
             category.addEventListener('mouseenter', () => {
                 const icon = category.querySelector('.category-icon');
                 if (icon) {
-                    // FIXED: Removed position change, kept only scale and rotate
                     icon.style.transform = 'scale(1.1) rotate(10deg)';
                     this.createFloatingParticles(icon);
                 }
@@ -940,19 +894,9 @@ class SkillBars {
             const y = Math.sin(angle) * distance;
             
             particle.animate([
-                { 
-                    transform: 'translate(-50%, -50%) scale(0)', 
-                    opacity: 0
-                },
-                { 
-                    transform: 'translate(-50%, -50%) scale(1)', 
-                    opacity: 1,
-                    offset: 0.3
-                },
-                { 
-                    transform: `translate(${x}px, ${y}px) scale(0)`, 
-                    opacity: 0
-                }
+                { transform: 'translate(-50%, -50%) scale(0)', opacity: 0 },
+                { transform: 'translate(-50%, -50%) scale(1)', opacity: 1, offset: 0.3 },
+                { transform: `translate(${x}px, ${y}px) scale(0)`, opacity: 0 }
             ], {
                 duration: 1500,
                 easing: CONFIG.animationEasing
@@ -980,7 +924,7 @@ class SkillBars {
 }
 
 // =============================================
-// PERFECT CONTACT FORM WITH VALIDATIONS
+// CONTACT FORM WITH VALIDATIONS
 // =============================================
 
 class ContactForm {
@@ -1012,57 +956,30 @@ class ContactForm {
         let isValid = true;
         let errorMessage = '';
 
-        // Remove existing error styling
         this.clearFieldError(field);
 
         switch (fieldName) {
             case 'firstName':
             case 'lastName':
-                if (!value) {
-                    isValid = false;
-                    errorMessage = 'This field is required';
-                } else if (value.length < 2) {
-                    isValid = false;
-                    errorMessage = 'Must be at least 2 characters';
-                }
+                if (!value) { isValid = false; errorMessage = 'This field is required'; }
+                else if (value.length < 2) { isValid = false; errorMessage = 'Must be at least 2 characters'; }
                 break;
-                
             case 'email':
                 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!value) {
-                    isValid = false;
-                    errorMessage = 'Email is required';
-                } else if (!emailRegex.test(value)) {
-                    isValid = false;
-                    errorMessage = 'Please enter a valid email';
-                }
+                if (!value) { isValid = false; errorMessage = 'Email is required'; }
+                else if (!emailRegex.test(value)) { isValid = false; errorMessage = 'Please enter a valid email'; }
                 break;
-                
             case 'subject':
-                if (!value) {
-                    isValid = false;
-                    errorMessage = 'Subject is required';
-                } else if (value.length < 5) {
-                    isValid = false;
-                    errorMessage = 'Subject must be at least 5 characters';
-                }
+                if (!value) { isValid = false; errorMessage = 'Subject is required'; }
+                else if (value.length < 5) { isValid = false; errorMessage = 'Subject must be at least 5 characters'; }
                 break;
-                
             case 'message':
-                if (!value) {
-                    isValid = false;
-                    errorMessage = 'Message is required';
-                } else if (value.length < 10) {
-                    isValid = false;
-                    errorMessage = 'Message must be at least 10 characters';
-                }
+                if (!value) { isValid = false; errorMessage = 'Message is required'; }
+                else if (value.length < 10) { isValid = false; errorMessage = 'Message must be at least 10 characters'; }
                 break;
         }
 
-        if (!isValid) {
-            this.showFieldError(field, errorMessage);
-        }
-
+        if (!isValid) this.showFieldError(field, errorMessage);
         return isValid;
     }
 
@@ -1071,7 +988,6 @@ class ContactForm {
         field.style.borderColor = CONFIG.colors.accent;
         field.style.backgroundColor = `${CONFIG.colors.accent}10`;
         
-        // Create or update error message
         let errorElement = wrapper.querySelector('.error-message');
         if (!errorElement) {
             errorElement = document.createElement('div');
@@ -1140,14 +1056,9 @@ class ContactForm {
         wrapper.style.position = 'relative';
         wrapper.appendChild(ripple);
         
+        setTimeout(() => { ripple.style.width = '100%'; }, 10);
         setTimeout(() => {
-            ripple.style.width = '100%';
-        }, 10);
-        
-        setTimeout(() => {
-            if (ripple.parentNode) {
-                ripple.parentNode.removeChild(ripple);
-            }
+            if (ripple.parentNode) ripple.parentNode.removeChild(ripple);
         }, 300);
     }
 
@@ -1167,8 +1078,6 @@ class ContactForm {
             input.addEventListener('focus', updateLabelState);
             input.addEventListener('blur', updateLabelState);
             input.addEventListener('input', updateLabelState);
-            
-            // Initial state
             updateLabelState();
         });
     }
@@ -1177,12 +1086,9 @@ class ContactForm {
         this.form.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Validate all fields
             let isFormValid = true;
             this.inputs.forEach(input => {
-                if (!this.validateField(input)) {
-                    isFormValid = false;
-                }
+                if (!this.validateField(input)) isFormValid = false;
             });
             
             if (isFormValid) {
@@ -1194,11 +1100,9 @@ class ContactForm {
     }
 
     async submitForm() {
-        // Show loading state
         this.setSubmitButtonState('loading');
         
         try {
-            // Get form data
             const formData = new FormData(this.form);
             const data = {
                 firstName: formData.get('firstName'),
@@ -1209,7 +1113,6 @@ class ContactForm {
                 message: formData.get('message')
             };
             
-            // Create mailto link
             const mailtoSubject = encodeURIComponent(data.subject);
             const mailtoBody = encodeURIComponent(
                 `Name: ${data.firstName} ${data.lastName}\n` +
@@ -1220,26 +1123,18 @@ class ContactForm {
             
             const mailtoLink = `mailto:shubhammahindrakar2104@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
             
-            // Simulate processing time
             await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            // Open email client
             window.open(mailtoLink);
             
-            // Show success state
             this.setSubmitButtonState('success');
             this.showSuccessAnimation();
             
-            // Reset form after success
             setTimeout(() => {
                 this.form.reset();
                 this.setSubmitButtonState('normal');
                 this.inputs.forEach(input => {
                     const label = input.nextElementSibling;
-                    if (label) {
-                        label.style.transform = '';
-                        label.style.color = '';
-                    }
+                    if (label) { label.style.transform = ''; label.style.color = ''; }
                 });
             }, 3000);
             
@@ -1247,10 +1142,7 @@ class ContactForm {
             console.error('Form submission error:', error);
             this.setSubmitButtonState('error');
             this.showFormError('Something went wrong. Please try again.');
-            
-            setTimeout(() => {
-                this.setSubmitButtonState('normal');
-            }, 3000);
+            setTimeout(() => { this.setSubmitButtonState('normal'); }, 3000);
         }
     }
 
@@ -1265,19 +1157,16 @@ class ContactForm {
                 this.submitBtn.disabled = true;
                 this.submitBtn.style.background = CONFIG.colors.secondary;
                 break;
-                
             case 'success':
                 btnText.textContent = 'Message Sent!';
                 btnIcon.className = 'fas fa-check btn-icon';
                 this.submitBtn.style.background = CONFIG.colors.success;
                 break;
-                
             case 'error':
                 btnText.textContent = 'Error Occurred';
                 btnIcon.className = 'fas fa-exclamation-triangle btn-icon';
                 this.submitBtn.style.background = CONFIG.colors.accent;
                 break;
-                
             default:
                 btnText.textContent = 'Send Message';
                 btnIcon.className = 'fas fa-paper-plane btn-icon';
@@ -1287,7 +1176,6 @@ class ContactForm {
     }
 
     showSuccessAnimation() {
-        // Create success particles
         const rect = this.submitBtn.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
@@ -1314,14 +1202,8 @@ class ContactForm {
             const y = Math.sin(angle) * distance;
             
             particle.animate([
-                { 
-                    transform: 'translate(-50%, -50%) scale(0)', 
-                    opacity: 1
-                },
-                { 
-                    transform: `translate(${x}px, ${y}px) scale(1)`, 
-                    opacity: 0
-                }
+                { transform: 'translate(-50%, -50%) scale(0)', opacity: 1 },
+                { transform: `translate(${x}px, ${y}px) scale(1)`, opacity: 0 }
             ], {
                 duration: randomBetween(1000, 1500),
                 easing: CONFIG.animationEasing
@@ -1330,7 +1212,6 @@ class ContactForm {
     }
 
     showFormError(message) {
-        // Create or update error notification
         let errorNotification = document.querySelector('.form-error-notification');
         if (!errorNotification) {
             errorNotification = document.createElement('div');
@@ -1363,9 +1244,7 @@ class ContactForm {
             errorNotification.style.opacity = '0';
             errorNotification.style.transform = 'translateX(100px)';
             setTimeout(() => {
-                if (errorNotification.parentNode) {
-                    errorNotification.parentNode.removeChild(errorNotification);
-                }
+                if (errorNotification.parentNode) errorNotification.parentNode.removeChild(errorNotification);
             }, 300);
         }, 5000);
     }
@@ -1379,7 +1258,7 @@ class ScrollToTop {
     constructor() {
         this.scrollBtn = document.getElementById('scrollToTop');
         this.progressCircle = document.querySelector('.progress-ring__circle');
-        this.circumference = 2 * Math.PI * 22; // radius is 22
+        this.circumference = 2 * Math.PI * 22;
     }
 
     init() {
@@ -1401,7 +1280,6 @@ class ScrollToTop {
             const offset = this.circumference - (scrollPercent * this.circumference);
             this.progressCircle.style.strokeDashoffset = offset;
             
-            // Show/hide button
             if (scrollTop > 300) {
                 this.scrollBtn.classList.add('show');
             } else {
@@ -1414,19 +1292,10 @@ class ScrollToTop {
 
     setupClickHandler() {
         this.scrollBtn.addEventListener('click', () => {
-            // Add click animation (FIXED: no position change)
             this.scrollBtn.style.transform = 'scale(0.9)';
-            setTimeout(() => {
-                this.scrollBtn.style.transform = '';
-            }, 150);
+            setTimeout(() => { this.scrollBtn.style.transform = ''; }, 150);
             
-            // Smooth scroll to top
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-            
-            // Create sparkle effect
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             this.createSparkleEffect();
         });
     }
@@ -1482,7 +1351,7 @@ class CustomCursor {
 
     init() {
         if (!this.cursor || !this.cursorTrail) return;
-        if (window.innerWidth <= 768) return; // Disable on mobile
+        if (window.innerWidth <= 768) return;
         
         this.setupEventListeners();
         this.setupInteractiveElements();
@@ -1522,19 +1391,15 @@ class CustomCursor {
         );
         
         interactiveElements.forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                this.cursor.classList.add('hover');
-            });
-            
-            element.addEventListener('mouseleave', () => {
-                this.cursor.classList.remove('hover');
-            });
+            element.addEventListener('mouseenter', () => { this.cursor.classList.add('hover'); });
+            element.addEventListener('mouseleave', () => { this.cursor.classList.remove('hover'); });
         });
     }
 }
 
 // =============================================
-// DNA HELIX INTERACTIONS (IF YOU'RE USING THE DNA VERSION)
+// DNA HELIX INTERACTIONS
+// UPDATED: skill descriptions match CV
 // =============================================
 
 class DNAHelix {
@@ -1589,14 +1454,8 @@ class DNAHelix {
             const y = Math.sin(angle) * distance;
             
             particle.animate([
-                { 
-                    transform: 'translate(-50%, -50%) scale(0)', 
-                    opacity: 1
-                },
-                { 
-                    transform: `translate(${x}px, ${y}px) scale(1)`, 
-                    opacity: 0
-                }
+                { transform: 'translate(-50%, -50%) scale(0)', opacity: 1 },
+                { transform: `translate(${x}px, ${y}px) scale(1)`, opacity: 0 }
             ], {
                 duration: 1000,
                 easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
@@ -1607,14 +1466,15 @@ class DNAHelix {
     showSkillTooltip(element) {
         const skillName = element.querySelector('span').textContent;
         const tooltip = document.createElement('div');
-        
+
+        // UPDATED: Skill descriptions aligned with CV content
         const skillDescriptions = {
-            'AI': 'Artificial Intelligence & Machine Learning',
-            'Genomics': 'DNA Sequencing & Analysis',
-            'Python': 'Programming & Data Science',
-            'Data Science': 'Statistical Analysis & Visualization',
-            'Research': 'Academic Publications & Innovation',
-            'ML': 'Predictive Modeling & Algorithms'
+            'AI':           'Agentic AI, LLMs & Generative AI',
+            'Genomics':     'scRNA-seq, Multi-omics & Genome Annotation',
+            'Python':       'Data Science, Pipelines & Bioinformatics',
+            'Data Science': 'Pandas, NumPy & Statistical Visualization',
+            'Research':     'ICSRF Best Paper Award · SSRN Publication',
+            'Deep Learning': 'CNNs, Transformers & Federated Learning'  // UPDATED from 'ML'
         };
         
         tooltip.innerHTML = `
@@ -1656,12 +1516,9 @@ class DNAHelix {
     setupCentralLogoInteractions() {
         if (!this.centralLogo) return;
 
-        this.centralLogo.addEventListener('click', () => {
-            this.createLogoExplosion();
-        });
+        this.centralLogo.addEventListener('click', () => { this.createLogoExplosion(); });
 
         this.centralLogo.addEventListener('mouseenter', () => {
-            // FIXED: No position change
             this.centralLogo.style.transform = 'scale(1.1)';
         });
 
@@ -1698,14 +1555,8 @@ class DNAHelix {
             const y = Math.sin(angle) * distance;
             
             particle.animate([
-                { 
-                    transform: 'translate(-50%, -50%) scale(0) rotate(0deg)', 
-                    opacity: 1
-                },
-                { 
-                    transform: `translate(${x}px, ${y}px) scale(1) rotate(360deg)`, 
-                    opacity: 0
-                }
+                { transform: 'translate(-50%, -50%) scale(0) rotate(0deg)', opacity: 1 },
+                { transform: `translate(${x}px, ${y}px) scale(1) rotate(360deg)`, opacity: 0 }
             ], {
                 duration: Math.random() * 1000 + 1500,
                 easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
@@ -1714,11 +1565,8 @@ class DNAHelix {
     }
 
     createParticleSystem() {
-        // Create ambient floating particles
         setInterval(() => {
-            if (Math.random() > 0.7) {
-                this.createAmbientParticle();
-            }
+            if (Math.random() > 0.7) this.createAmbientParticle();
         }, 2000);
     }
 
@@ -1743,19 +1591,9 @@ class DNAHelix {
         container.appendChild(particle);
         
         particle.animate([
-            { 
-                opacity: 0,
-                transform: 'scale(0) translateY(0px)'
-            },
-            { 
-                opacity: 1,
-                transform: 'scale(1) translateY(-20px)',
-                offset: 0.3
-            },
-            { 
-                opacity: 0,
-                transform: 'scale(0) translateY(-40px)'
-            }
+            { opacity: 0, transform: 'scale(0) translateY(0px)' },
+            { opacity: 1, transform: 'scale(1) translateY(-20px)', offset: 0.3 },
+            { opacity: 0, transform: 'scale(0) translateY(-40px)' }
         ], {
             duration: 4000,
             easing: 'ease-out'
@@ -1764,13 +1602,12 @@ class DNAHelix {
 }
 
 // =============================================
-// MAIN INITIALIZATION FUNCTION
+// MAIN INITIALIZATION
 // =============================================
 
 function initializePortfolio() {
-    console.log('🚀 Initializing the most spectacular portfolio ever created!');
+    console.log('🚀 Initializing Shubham Mahindrakar Portfolio — AI-Bioinformatics Researcher');
     
-    // Initialize all components
     const navigation = new Navigation();
     navigation.init();
     
@@ -1795,11 +1632,9 @@ function initializePortfolio() {
     const customCursor = new CustomCursor();
     customCursor.init();
     
-    // Initialize DNA Helix if present
     const dnaHelix = new DNAHelix();
     dnaHelix.init();
     
-    // Initialize AOS (Animate On Scroll)
     if (typeof AOS !== 'undefined') {
         AOS.init({
             duration: 1000,
@@ -1811,10 +1646,9 @@ function initializePortfolio() {
         });
     }
     
-    // Add dynamic animations based on user interactions
     setupDynamicAnimations();
     
-    console.log('✨ Portfolio initialization complete! Ready to impress!');
+    console.log('✨ Portfolio ready — EFREI Lab · Amrita · Bioclues · ICSRF Best Paper 2025');
 }
 
 // =============================================
@@ -1822,19 +1656,15 @@ function initializePortfolio() {
 // =============================================
 
 function setupDynamicAnimations() {
-    // Add entrance animations for sections
     const sections = document.querySelectorAll('section');
     const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('section-visible');
-            }
+            if (entry.isIntersecting) entry.target.classList.add('section-visible');
         });
     }, { threshold: 0.1 });
     
     sections.forEach(section => sectionObserver.observe(section));
     
-    // Konami code easter egg
     const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
     let konamiIndex = 0;
     
@@ -1850,7 +1680,6 @@ function setupDynamicAnimations() {
         }
     });
     
-    // Performance monitoring
     if ('performance' in window) {
         window.addEventListener('load', () => {
             const loadTime = performance.now();
@@ -1862,14 +1691,10 @@ function setupDynamicAnimations() {
 function activateRainbowMode() {
     document.body.style.animation = 'rainbow-mode 3s ease-in-out';
     
-    // Create celebration particles
     for (let i = 0; i < 50; i++) {
-        setTimeout(() => {
-            createCelebrationParticle();
-        }, i * 100);
+        setTimeout(() => { createCelebrationParticle(); }, i * 100);
     }
     
-    // Show celebration message
     const message = document.createElement('div');
     message.style.cssText = `
         position: fixed;
@@ -1919,19 +1744,9 @@ function createCelebrationParticle() {
     document.body.appendChild(particle);
     
     particle.animate([
-        { 
-            transform: 'scale(0) rotate(0deg)', 
-            opacity: 1 
-        },
-        { 
-            transform: 'scale(1) rotate(180deg)', 
-            opacity: 1,
-            offset: 0.3
-        },
-        { 
-            transform: 'scale(0) rotate(360deg)', 
-            opacity: 0 
-        }
+        { transform: 'scale(0) rotate(0deg)', opacity: 1 },
+        { transform: 'scale(1) rotate(180deg)', opacity: 1, offset: 0.3 },
+        { transform: 'scale(0) rotate(360deg)', opacity: 0 }
     ], {
         duration: randomBetween(2000, 4000),
         easing: CONFIG.animationEasing
@@ -1939,11 +1754,10 @@ function createCelebrationParticle() {
 }
 
 // =============================================
-// DOCUMENT READY & ERROR HANDLING
+// DOCUMENT READY
 // =============================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Add additional styles for animations
     const additionalStyles = `
         <style>
         @keyframes rainbow-mode {
@@ -1951,101 +1765,61 @@ document.addEventListener('DOMContentLoaded', () => {
             50% { filter: hue-rotate(180deg) saturate(1.5); }
             100% { filter: hue-rotate(360deg) saturate(1); }
         }
-
         @keyframes gradient-shift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
         @keyframes ripple-animation {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
+            to { transform: scale(4); opacity: 0; }
         }
-
         @keyframes star-twinkle {
             from { opacity: 0.3; transform: scale(1); }
             to { opacity: 1; transform: scale(1.2); }
         }
-
         @keyframes meteor-fall {
-            from { 
-                opacity: 0; 
-                transform: translateY(-100px) rotate(45deg); 
-            }
-            10% { 
-                opacity: 1; 
-            }
-            90% { 
-                opacity: 1; 
-            }
-            to { 
-                opacity: 0; 
-                transform: translateY(100vh) rotate(45deg); 
-            }
+            from { opacity: 0; transform: translateY(-100px) rotate(45deg); }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            to { opacity: 0; transform: translateY(100vh) rotate(45deg); }
         }
-
         .section-visible {
             animation: section-entrance 0.8s ease-out forwards;
         }
-
         @keyframes section-entrance {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         </style>
     `;
     
     document.head.insertAdjacentHTML('beforeend', additionalStyles);
     
-    // Initialize loading screen
     const loadingScreen = new LoadingScreen();
     loadingScreen.init();
     
-    // Set initial theme
     document.documentElement.setAttribute('data-theme', currentTheme);
-    
-    // Prevent body scroll during loading
     document.body.classList.add('no-scroll');
 });
 
-// Error handling
-window.addEventListener('error', (e) => {
-    console.error('Portfolio Error:', e.error);
-});
+window.addEventListener('error', (e) => { console.error('Portfolio Error:', e.error); });
+window.addEventListener('unhandledrejection', (e) => { console.error('Unhandled Promise:', e.reason); });
 
-window.addEventListener('unhandledrejection', (e) => {
-    console.error('Unhandled Promise Rejection:', e.reason);
-});
-
-// Performance optimization
 if ('requestIdleCallback' in window) {
-    requestIdleCallback(() => {
-        console.log('🔥 Portfolio is running at peak performance!');
-    });
+    requestIdleCallback(() => { console.log('🔥 Portfolio running at peak performance!'); });
 }
 
-// Console signature
+// UPDATED: Console signature reflects current role
 console.log(`
-██╗    ██╗ ██████╗ ██████╗ ██╗     ██████╗     ███████╗    ██████╗ ███████╗███████╗████████╗
-██║    ██║██╔═══██╗██╔══██╗██║     ██╔══██╗    ██╔════╝    ██╔══██╗██╔════╝██╔════╝╚══██╔══╝
-██║ █╗ ██║██║   ██║██████╔╝██║     ██║  ██║    ███████╗    ██████╔╝█████╗  ███████╗   ██║   
-██║███╗██║██║   ██║██╔══██╗██║     ██║  ██║    ╚════██║    ██╔══██╗██╔══╝  ╚════██║   ██║   
-╚███╔███╔╝╚██████╔╝██║  ██║███████╗██████╔╝    ███████║    ██████╔╝███████╗███████║   ██║   
- ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═════╝     ╚══════╝    ╚═════╝ ╚══════╝╚══════╝   ╚═╝   
+ ███████╗██╗  ██╗██╗   ██╗██████╗ ██╗  ██╗ █████╗ ███╗   ███╗
+ ██╔════╝██║  ██║██║   ██║██╔══██╗██║  ██║██╔══██╗████╗ ████║
+ ███████╗███████║██║   ██║██████╔╝███████║███████║██╔████╔██║
+ ╚════██║██╔══██║██║   ██║██╔══██╗██╔══██║██╔══██║██║╚██╔╝██║
+ ███████║██║  ██║╚██████╔╝██████╔╝██║  ██║██║  ██║██║ ╚═╝ ██║
+ ╚══════╝╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝
 
-🚀 Shubham Mahindrakar's Portfolio - UPDATED & FIXED VERSION
-✨ All hover movements fixed - Elements stay in place
-💻 Static name - No typing animation
-🌟 Perfect clickability - All buttons and links work flawlessly
+🧬 Shubham Mahindrakar — AI-Bioinformatics Researcher
+🔬 EFREI Lab, Paris · Amrita School of Biotechnology
+🏆 ICSRF 2025 Best Paper Award · SSRN Publication
+🚀 ONCO-JEPA | scRNA-seq | CRISPR/Cas9 DL | Genome Annotation
 `);
-
-/* End of the COMPLETE UPDATED JavaScript! */
