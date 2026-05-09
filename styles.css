@@ -1699,19 +1699,7 @@ section {
 .card-shine { display: none; }
 
 
-/* ============================================================
-   PUBLICATIONS BLOCK
-   ============================================================ */
 
-.publications-block {
-    margin-top: 0;
-}
-
-.publications-block h3 {
-    display: none; /* title now handled by cert-block-title */
-}
-
-.publications-block h3 i { color: var(--clr-primary); }
 
 
 /* ============================================================
@@ -1879,11 +1867,12 @@ section {
     border-radius: var(--r-xl);
     padding: var(--sp-10);
     box-shadow: var(--shadow-card);
-    transition: border-color var(--t-normal);
+    transition: border-color var(--t-normal), box-shadow var(--t-normal);
 }
 
 .cert-block:hover {
     border-color: var(--clr-border-hov);
+    box-shadow: var(--shadow-md);
 }
 
 .cert-block-title {
@@ -1896,11 +1885,15 @@ section {
     gap: var(--sp-3);
     padding-bottom: var(--sp-5);
     border-bottom: 1px solid var(--clr-border);
+    line-height: 1;
 }
 
 .cert-block-title i {
     color: var(--clr-primary);
     font-size: var(--fs-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .certifications-grid {
@@ -1909,22 +1902,26 @@ section {
     gap: var(--sp-4);
 }
 
-/* ─── KEY FIX ─────────────────────────────────────────────── */
+/* ─── CERT CARD — perfectly centered ──────────────────────── */
 
 .cert-card {
     background: var(--clr-surface-2);
     border: 1px solid var(--clr-border);
     border-radius: var(--r-lg);
-    padding: var(--sp-5) var(--sp-6);
+    padding: var(--sp-5) var(--sp-6);   /* equal vertical + horizontal breathing room */
     display: flex;
-    align-items: flex-start;     /* align top so icon + multi-line text sit cleanly */
-    gap: var(--sp-4);            /* slightly tighter gap than sp-5 */
+    align-items: center;                 /* ← true vertical center for both icon & text */
+    justify-content: flex-start;
+    gap: var(--sp-4);
+    min-height: 88px;                    /* enforces consistent card height */
     transition: border-color var(--t-normal), box-shadow var(--t-normal), transform var(--t-fast);
     box-shadow: var(--shadow-card);
     cursor: default;
-    min-height: 80px;
-    overflow: hidden;            /* hard clip so nothing bleeds out */
+    overflow: hidden;
+    position: relative;
 }
+
+.cert-card::before { display: none; }
 
 .cert-card:hover {
     border-color: var(--clr-border-hov);
@@ -1932,69 +1929,139 @@ section {
     transform: translateY(-2px);
 }
 
-.cert-card::before { display: none; }
+/* Subtle top accent line on hover */
+.cert-card::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--grad-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--t-normal);
+    border-radius: var(--r-lg) var(--r-lg) 0 0;
+}
+
+.cert-card:hover::after {
+    transform: scaleX(1);
+}
+
+/* ─── ICON — fixed size, never shrinks ────────────────────── */
 
 .cert-icon {
-    width: 44px;                 /* slightly smaller so more space goes to text */
-    height: 44px;
-    min-width: 44px;             /* ← CRITICAL: prevents flex from squeezing icon */
-    flex-shrink: 0;              /* ← CRITICAL: icon never shrinks under any flex pressure */
-    background: rgba(102,126,234,0.12);
-    border: 1px solid rgba(102,126,234,0.25);
+    width: 48px;
+    height: 48px;
+    min-width: 48px;             /* lock width — flex cannot compress */
+    flex-shrink: 0;              /* lock size — flex cannot compress */
+    background: rgba(102, 126, 234, 0.12);
+    border: 1px solid rgba(102, 126, 234, 0.22);
     border-radius: var(--r-md);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--clr-primary);
-    font-size: var(--fs-xl);
-    transition: background var(--t-fast);
-    margin-top: 2px;             /* nudge icon to align with first line of text */
+    font-size: 1.25rem;          /* fixed size, not a variable — more predictable */
+    transition: background var(--t-fast), transform var(--t-fast);
+    /* NO margin-top — icon is already centered by align-items: center on parent */
 }
 
 .cert-card:hover .cert-icon {
-    background: rgba(102,126,234,0.2);
+    background: rgba(102, 126, 234, 0.2);
+    transform: scale(1.07);
 }
+
+/* ─── TEXT — fills remaining space, wraps cleanly ─────────── */
 
 .cert-content {
     flex: 1;
-    min-width: 0;                /* ← CRITICAL: allows text block to shrink and wrap */
-    overflow: hidden;
+    min-width: 0;                /* allows flex shrink + text wrap */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;     /* vertically center title + subtitle within text block */
+    gap: 5px;
 }
 
 .cert-content h4 {
     font-size: var(--fs-base);
     font-weight: 700;
     color: var(--clr-text);
-    margin-bottom: 5px;
     line-height: 1.4;
-    overflow-wrap: break-word;   /* ← wraps very long words instead of overflowing */
+    overflow-wrap: break-word;
     word-break: break-word;
+    margin: 0;                   /* reset any inherited margin */
 }
 
 .cert-content p {
     font-size: var(--fs-sm);
     color: var(--clr-muted);
     line-height: 1.5;
-    white-space: normal;         /* ensure it always wraps */
+    white-space: normal;
+    margin: 0;                   /* reset any inherited margin */
 }
 
-/* ─── END FIX ─────────────────────────────────────────────── */
+/* ─── AWARD CARD — golden highlight variant ───────────────── */
 
 .cert-card.award-card {
-    border-color: rgba(255,200,50,0.2);
-    background: linear-gradient(135deg, var(--clr-surface-2), rgba(255,200,50,0.03));
+    border-color: rgba(255, 200, 50, 0.2);
+    background: linear-gradient(
+        135deg,
+        var(--clr-surface-2) 0%,
+        rgba(255, 200, 50, 0.04) 100%
+    );
+}
+
+.cert-card.award-card::after {
+    background: linear-gradient(90deg, #ffc832, #ffaa00);
 }
 
 .cert-card.award-card:hover {
-    border-color: rgba(255,200,50,0.4);
+    border-color: rgba(255, 200, 50, 0.4);
+    box-shadow: 0 4px 20px rgba(255, 200, 50, 0.08);
 }
 
 .cert-card.award-card .cert-icon {
-    background: rgba(255,200,50,0.12);
-    border-color: rgba(255,200,50,0.3);
-    color: #ffc832;
-    min-width: 44px;             /* same min-width for award variant */
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
     flex-shrink: 0;
+    background: rgba(255, 200, 50, 0.12);
+    border-color: rgba(255, 200, 50, 0.3);
+    color: #ffc832;
+    font-size: 1.25rem;
+}
+
+.cert-card.award-card:hover .cert-icon {
+    background: rgba(255, 200, 50, 0.2);
+}
+
+/* ─── RESPONSIVE ───────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+    .certifications-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cert-block {
+        padding: var(--sp-6);
+    }
+
+    .cert-block-title {
+        font-size: var(--fs-xl);
+        margin-bottom: var(--sp-6);
+        padding-bottom: var(--sp-4);
+    }
+
+    .cert-card {
+        min-height: 76px;
+        padding: var(--sp-4) var(--sp-5);
+    }
+}
+
+@media (max-width: 480px) {
+    .certifications-grid {
+        grid-template-columns: 1fr;
+        gap: var(--sp-3);
+    }
 }
 
 /* ============================================================
