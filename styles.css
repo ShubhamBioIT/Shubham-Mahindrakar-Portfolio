@@ -1705,7 +1705,7 @@ section {
 
 .publications-block {
     margin-top: var(--sp-12);
-    padding: var(--sp-8);
+    padding: var(--sp-10);            /* was sp-8 */
     background: var(--clr-surface-2);
     border: 1px solid var(--clr-border);
     border-radius: var(--r-xl);
@@ -1713,13 +1713,15 @@ section {
 }
 
 .publications-block h3 {
-    font-size: var(--fs-xl);
+    font-size: var(--fs-2xl);         /* was fs-xl */
     font-weight: 700;
     color: var(--clr-text);
-    margin-bottom: var(--sp-6);
+    margin-bottom: var(--sp-8);       /* was sp-6 */
     display: flex;
     align-items: center;
     gap: var(--sp-3);
+    padding-bottom: var(--sp-4);      /* ADD */
+    border-bottom: 1px solid var(--clr-border);  /* ADD — separator line */
 }
 
 .publications-block h3 i { color: var(--clr-primary); }
@@ -1775,16 +1777,16 @@ section {
 }
 
 .category-icon {
-    width: 64px;
-    height: 64px;
+    width: 80px;                 /* was 64px */
+    height: 80px;
     background: var(--grad-primary);
     border-radius: var(--r-lg);
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
-    font-size: 1.75rem;
-    margin: 0 auto var(--sp-4);
+    font-size: 2.2rem;           /* was 1.75rem */
+    margin: 0 auto var(--sp-6);  /* was sp-4 */
     box-shadow: 0 4px 16px rgba(102,126,234,0.25);
     transition: transform var(--t-normal);
 }
@@ -1795,15 +1797,16 @@ section {
 .category-icon::before { display: none !important; }
 
 .category-header h3 {
-    font-size: var(--fs-xl);
+    font-size: var(--fs-2xl);    /* was fs-xl — bigger heading */
     font-weight: 700;
     color: var(--clr-text);
-    margin-bottom: var(--sp-1);
+    margin-bottom: var(--sp-2);
 }
 
 .category-header p {
-    font-size: var(--fs-sm);
+    font-size: var(--fs-base);   /* was fs-sm — bigger subtext */
     color: var(--clr-muted);
+    line-height: 1.6;
 }
 
 .skills-list {
@@ -1817,14 +1820,17 @@ section {
 .skill-info {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: var(--sp-2);
+    align-items: flex-start;   /* was center */
+    gap: var(--sp-4);
+    margin-bottom: var(--sp-3);  /* was sp-2 */
 }
 
 .skill-name {
-    font-size: var(--fs-sm);
+    font-size: var(--fs-base);   /* was fs-sm — bigger */
     font-weight: 600;
     color: var(--clr-text);
+    line-height: 1.4;
+    flex: 1;                     /* ADD this — stops wrapping */
 }
 
 .skill-level {
@@ -1833,9 +1839,11 @@ section {
     color: var(--clr-muted);
     font-weight: 500;
     background: var(--clr-surface-3);
-    padding: 2px var(--sp-3);
+    padding: 3px var(--sp-3);
     border-radius: var(--r-full);
     border: 1px solid var(--clr-border);
+    white-space: nowrap;         /* ADD — badge never wraps */
+    flex-shrink: 0;              /* ADD — badge keeps its size */
 }
 
 .skill-bar {
@@ -1860,32 +1868,32 @@ section {
 
 /* Certifications */
 .certifications-section {
-    margin-top: var(--sp-16);
+    margin-top: var(--sp-20);
 }
 
 .certifications-section h3 {
-    font-size: var(--fs-2xl);
+    font-size: var(--fs-3xl);    /* was fs-2xl */
     font-weight: 700;
     color: var(--clr-text);
-    margin-bottom: var(--sp-8);
+    margin-bottom: var(--sp-10); /* was sp-8 */
     text-align: center;
 }
 
 .certifications-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));  /* was 280px */
     gap: var(--sp-5);
 }
 
 .cert-card {
     background: var(--clr-surface);
     border: 1px solid var(--clr-border);
-    border-radius: var(--r-lg);
-    padding: var(--sp-5);
+    border-radius: var(--r-xl);       /* was r-lg — rounder */
+    padding: var(--sp-6) var(--sp-6); /* was sp-5 */
     display: flex;
     align-items: center;
-    gap: var(--sp-4);
-    transition: border-color var(--t-normal), box-shadow var(--t-normal);
+    gap: var(--sp-5);                 /* was sp-4 */
+    transition: border-color var(--t-normal), box-shadow var(--t-normal), transform var(--t-fast);
     box-shadow: var(--shadow-card);
     cursor: default;
 }
@@ -1893,38 +1901,40 @@ section {
 .cert-card:hover {
     border-color: var(--clr-border-hov);
     box-shadow: var(--shadow-md);
+    transform: translateY(-2px);      /* ADD — subtle lift */
 }
+
 
 .cert-card::before { display: none; }
 
 .cert-icon {
-    width: 44px;
-    height: 44px;
-    background: rgba(102,126,234,0.1);
-    border: 1px solid rgba(102,126,234,0.2);
+    width: 52px;                      /* was 44px */
+    height: 52px;
+    background: rgba(102,126,234,0.12);
+    border: 1px solid rgba(102,126,234,0.25);
     border-radius: var(--r-md);
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--clr-primary);
-    font-size: var(--fs-lg);
+    font-size: var(--fs-2xl);         /* was fs-lg */
     flex-shrink: 0;
     transition: background var(--t-fast);
 }
-
 .cert-card:hover .cert-icon { background: rgba(102,126,234,0.16); }
 
 .cert-content h4 {
-    font-size: var(--fs-sm);
-    font-weight: 600;
+    font-size: var(--fs-base);        /* was fs-sm */
+    font-weight: 700;
     color: var(--clr-text);
-    margin-bottom: 3px;
+    margin-bottom: 4px;
     line-height: 1.4;
 }
 
 .cert-content p {
-    font-size: var(--fs-xs);
+    font-size: var(--fs-sm);          /* was fs-xs */
     color: var(--clr-muted);
+    line-height: 1.5;
 }
 
 
