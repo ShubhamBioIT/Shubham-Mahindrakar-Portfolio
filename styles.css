@@ -92,9 +92,9 @@
     --clr-surface-3: #e8ecf5;
     --clr-border:    rgba(0,0,0,0.10);
     --clr-border-hov:rgba(102,126,234,0.35);
-    --clr-text:      #0d1117;    /* was #1a202c — much darker */
-    --clr-muted:     #2d3748;    /* was #4a5568 — darker muted */
-    --clr-faint:     #718096;    /* was #a0aec0 */
+    --clr-text:      #1a202c;    /* was  — much darker */
+    --clr-muted:     #4a5568;    /* was  — darker muted */
+    --clr-faint:     #a0aec0;    /* was  */
     --shadow-sm:     0 1px 3px rgba(0,0,0,0.10);
     --shadow-md:     0 4px 16px rgba(0,0,0,0.12);
     --shadow-lg:     0 12px 40px rgba(0,0,0,0.16);
@@ -102,46 +102,7 @@
     --grad-hero-bg:  linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 }
 
-/* Light mode text overrides — force dark readable text */
-[data-theme="light"] .timeline-description,
-[data-theme="light"] .project-description,
-[data-theme="light"] .card-content p,
-[data-theme="light"] .hero-description,
-[data-theme="light"] .section-subtitle,
-[data-theme="light"] .feature-item,
-[data-theme="light"] .achievement-item,
-[data-theme="light"] .cert-content p,
-[data-theme="light"] .footer-tagline,
-[data-theme="light"] .method-content p {
-    color: #2d3748;
-}
 
-[data-theme="light"] .timeline-title,
-[data-theme="light"] .project-title,
-[data-theme="light"] .card-header h3,
-[data-theme="light"] .achievement-number,
-[data-theme="light"] .skill-name,
-[data-theme="light"] .cert-content h4 {
-    color: #0d1117;
-}
-
-[data-theme="light"] .about-card,
-[data-theme="light"] .achievement-card,
-[data-theme="light"] .cert-card,
-[data-theme="light"] .project-card,
-[data-theme="light"] .contact-method,
-[data-theme="light"] .social-link {
-    background: #ffffff;
-    border-color: rgba(0,0,0,0.10);
-}
-
-[data-theme="light"] .tech-tag,
-[data-theme="light"] .tech-pill,
-[data-theme="light"] .skill-level {
-    background: #e8ecf5;
-    color: #2d3748;
-    border-color: rgba(0,0,0,0.10);
-}
 
 /* ============================================================
    RESET & BASE
