@@ -173,7 +173,7 @@ p { text-wrap: pretty; }
 .container-wide {
     max-width: var(--content-wide);
     margin: 0 auto;
-    padding: 0 var(--sp-8);
+    padding: 0 var(--sp-12);
 }
 
 
@@ -978,14 +978,15 @@ p { text-wrap: pretty; }
 
 section {
     position: relative;
-    padding: var(--sp-24) 0;
+    padding: var(--sp-24) 0;   /* keep this */
+    min-height: 80vh;           /* ADD this line — sections fill screen */
     overflow: hidden;
 }
 
 /* Section header */
 .section-header {
     text-align: center;
-    margin-bottom: var(--sp-16);
+    margin-bottom: var(--sp-20);
 }
 
 .section-tag {
@@ -1744,8 +1745,8 @@ section {
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: var(--sp-6);
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: var(--sp-8);   /* was sp-6 */
     position: relative;
     z-index: 1;
 }
@@ -1754,7 +1755,7 @@ section {
     background: var(--clr-surface);
     border: 1px solid var(--clr-border);
     border-radius: var(--r-xl);
-    padding: var(--sp-8);
+    padding: var(--sp-10);
     transition: border-color var(--t-normal), box-shadow var(--t-normal);
     box-shadow: var(--shadow-card);
 }
@@ -1769,7 +1770,7 @@ section {
 
 .category-header {
     text-align: center;
-    margin-bottom: var(--sp-8);
+    margin-bottom: var(--sp-10);
 }
 
 .category-icon {
@@ -1807,7 +1808,7 @@ section {
 .skills-list {
     display: flex;
     flex-direction: column;
-    gap: var(--sp-5);
+    gap: var(--sp-7);
 }
 
 .skill-item { position: relative; }
@@ -1838,10 +1839,11 @@ section {
 
 .skill-bar {
     width: 100%;
-    height: 6px;
+    height: 8px;        /* was 6px — thicker bars look less cramped */
     background: var(--clr-surface-3);
     border-radius: var(--r-full);
     overflow: hidden;
+    margin-top: var(--sp-2);  /* add this line */
 }
 
 .skill-progress {
@@ -1871,7 +1873,7 @@ section {
 .certifications-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: var(--sp-4);
+    gap: var(--sp-5);
 }
 
 .cert-card {
