@@ -1869,12 +1869,10 @@ section {
     gap: var(--sp-10);
 }
 
-/* Remove the old single h3 heading */
 .certifications-section > h3 {
     display: none;
 }
 
-/* Each visual block */
 .cert-block {
     background: var(--clr-surface);
     border: 1px solid var(--clr-border);
@@ -1888,7 +1886,6 @@ section {
     border-color: var(--clr-border-hov);
 }
 
-/* Block title (replaces old h3) */
 .cert-block-title {
     font-size: var(--fs-2xl);
     font-weight: 700;
@@ -1906,26 +1903,27 @@ section {
     font-size: var(--fs-xl);
 }
 
-/* Certifications grid inside block */
 .certifications-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: var(--sp-4);
 }
 
-/* Individual cert card */
+/* ─── KEY FIX ─────────────────────────────────────────────── */
+
 .cert-card {
     background: var(--clr-surface-2);
     border: 1px solid var(--clr-border);
     border-radius: var(--r-lg);
     padding: var(--sp-5) var(--sp-6);
     display: flex;
-    align-items: center;
-    gap: var(--sp-5);
+    align-items: flex-start;     /* align top so icon + multi-line text sit cleanly */
+    gap: var(--sp-4);            /* slightly tighter gap than sp-5 */
     transition: border-color var(--t-normal), box-shadow var(--t-normal), transform var(--t-fast);
     box-shadow: var(--shadow-card);
     cursor: default;
-    min-height: 80px;  /* ensures consistent card height */
+    min-height: 80px;
+    overflow: hidden;            /* hard clip so nothing bleeds out */
 }
 
 .cert-card:hover {
@@ -1937,8 +1935,10 @@ section {
 .cert-card::before { display: none; }
 
 .cert-icon {
-    width: 52px;
-    height: 52px;
+    width: 44px;                 /* slightly smaller so more space goes to text */
+    height: 44px;
+    min-width: 44px;             /* ← CRITICAL: prevents flex from squeezing icon */
+    flex-shrink: 0;              /* ← CRITICAL: icon never shrinks under any flex pressure */
     background: rgba(102,126,234,0.12);
     border: 1px solid rgba(102,126,234,0.25);
     border-radius: var(--r-md);
@@ -1947,8 +1947,8 @@ section {
     justify-content: center;
     color: var(--clr-primary);
     font-size: var(--fs-xl);
-    flex-shrink: 0;
     transition: background var(--t-fast);
+    margin-top: 2px;             /* nudge icon to align with first line of text */
 }
 
 .cert-card:hover .cert-icon {
@@ -1957,7 +1957,8 @@ section {
 
 .cert-content {
     flex: 1;
-    min-width: 0;  /* prevents text overflow issues */
+    min-width: 0;                /* ← CRITICAL: allows text block to shrink and wrap */
+    overflow: hidden;
 }
 
 .cert-content h4 {
@@ -1966,6 +1967,7 @@ section {
     color: var(--clr-text);
     margin-bottom: 5px;
     line-height: 1.4;
+    overflow-wrap: break-word;   /* ← wraps very long words instead of overflowing */
     word-break: break-word;
 }
 
@@ -1973,9 +1975,11 @@ section {
     font-size: var(--fs-sm);
     color: var(--clr-muted);
     line-height: 1.5;
+    white-space: normal;         /* ensure it always wraps */
 }
 
-/* Award card — special highlight */
+/* ─── END FIX ─────────────────────────────────────────────── */
+
 .cert-card.award-card {
     border-color: rgba(255,200,50,0.2);
     background: linear-gradient(135deg, var(--clr-surface-2), rgba(255,200,50,0.03));
@@ -1989,6 +1993,8 @@ section {
     background: rgba(255,200,50,0.12);
     border-color: rgba(255,200,50,0.3);
     color: #ffc832;
+    min-width: 44px;             /* same min-width for award variant */
+    flex-shrink: 0;
 }
 
 /* ============================================================
